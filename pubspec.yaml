@@ -1,0 +1,16 @@
+name: biscuits
+version: 0.1.0
+
+author: Cédric Belin <cedric@belin.io>
+description: Service for interacting with the HTTP cookies.
+documentation: https://cedx.github.io/lcov.dart
+homepage: https://github.com/cedx/lcov.dart
+
+environment:
+  sdk: '>=1.24.0'
+
+dev_dependencies:
+  coverage: ^0.9.2
+  coveralls: ^1.0.0
+  grinder: ^0.8.0
+  test: ^0.12.24
