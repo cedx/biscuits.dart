@@ -3,8 +3,8 @@ version: 0.1.0
 
 author: Cédric Belin <cedric@belin.io>
 description: Service for interacting with the HTTP cookies.
-documentation: https://cedx.github.io/lcov.dart
-homepage: https://github.com/cedx/lcov.dart
+documentation: https://cedx.github.io/biscuits.dart
+homepage: https://github.com/cedx/biscuits.dart
 
 environment:
   sdk: '>=1.24.0'
