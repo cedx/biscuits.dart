@@ -1,0 +1,10 @@
+dist: trusty
+sudo: false
+notifications:
+  email: false
+
+language: dart
+dart: stable
+
+script: pub run grinder test
+after_script: pub run coveralls --file=var/lcov.info
