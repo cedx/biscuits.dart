@@ -7,4 +7,4 @@ language: dart
 dart: stable
 
 script: pub run grinder test
-after_script: pub run coveralls --file=var/lcov.info
+after_success: pub run coveralls var/lcov.info

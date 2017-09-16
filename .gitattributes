@@ -1,10 +1,6 @@
 * text=auto
 
-.editorconfig text
-.gitattributes text
-.gitignore text
-.travis.yml text
-
+.* text
 *.dart text
 *.md text
 *.txt text
