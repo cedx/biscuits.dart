@@ -1,10 +1,16 @@
 dist: trusty
+language: dart
 sudo: false
+
+dart: stable
+addons:
+  firefox: latest
 notifications:
   email: false
 
-language: dart
-dart: stable
-
-script: pub run grinder test
-after_success: pub run coveralls var/lcov.info
+before_script:
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sleep 3
+script: pub run test --platform=firefox
+after_success: pub run grinder coverage

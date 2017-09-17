@@ -13,8 +13,16 @@ void clean() => defaultClean();
 
 /// Uploads the code coverage report.
 @Task('Upload the code coverage')
-@Depends(test)
-void coverage() => Pub.run('coveralls', arguments: const ['--file=var/lcov.info']);
+Future coverage() async {
+  await Future.wait([
+    Dart.runAsync('test/all.dart', vmArgs: const ['--checked', '--enable-vm-service', '--pause-isolates-on-exit']),
+    Pub.runAsync('coverage', script: 'collect_coverage', arguments: const ['--out=var/coverage.json', '--resume-isolates', '--wait-paused'])
+  ]);
+
+  var args = const ['--in=var/coverage.json', '--lcov', '--out=var/lcov.info', '--packages=.packages', '--report-on=lib'];
+  await Pub.runAsync('coverage', script: 'format_coverage', arguments: args);
+  return Pub.runAsync('coveralls', arguments: const ['var/lcov.info']);
+}
 
 /// Builds the documentation.
 @Task('Build the documentation')
@@ -30,12 +38,4 @@ void lint() => Analyzer.analyze(_sources);
 
 /// Runs all the test suites.
 @Task('Run the tests')
-Future test() async {
-  await Future.wait([
-    Dart.runAsync('test/all.dart', vmArgs: const ['--checked', '--enable-vm-service', '--pause-isolates-on-exit']),
-    Pub.runAsync('coverage', script: 'collect_coverage', arguments: const ['--out=var/coverage.json', '--resume-isolates', '--wait-paused'])
-  ]);
-
-  var args = const ['--in=var/coverage.json', '--lcov', '--out=var/lcov.info', '--packages=.packages', '--report-on=lib'];
-  return Pub.runAsync('coverage', script: 'format_coverage', arguments: args);
-}
+void test() => new TestRunner().test(platformSelector: 'firefox');
