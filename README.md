@@ -34,6 +34,12 @@ import 'package:biscuits/biscuits.dart';
 ## Usage
 This package provides a service dedicated to the cookie management: the `Cookies` class.
 
+```dart
+import 'dart:html' as dom;
+
+
+```
+
 ## See also
 - [API reference](https://cedx.github.io/biscuits.dart)
 - [Code coverage](https://coveralls.io/github/cedx/biscuits.dart)
