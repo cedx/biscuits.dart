@@ -1,16 +1,12 @@
+addons: {chrome: stable}
+dart: [dev]
 dist: trusty
 language: dart
+notifications: {email: false}
 sudo: false
-
-dart: stable
-addons:
-  firefox: latest
-notifications:
-  email: false
 
 before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 - sleep 3
-script: pub run test --platform=firefox
-after_success: pub run grinder coverage
+script: pub run test

@@ -1,3 +1,2 @@
-platforms:
-- firefox
-- vm
+test_on: browser
+platforms: [chrome]
