@@ -4,7 +4,7 @@ part of biscuits;
 class Cookies extends MapBase<String, String> {
 
   /// The handler of "changes" events.
-  final StreamController<List<KeyValueChange>> _onChanges = new StreamController<List<KeyValueChange>>.broadcast();
+  final StreamController<List<KeyValueChange>> _onChanges = StreamController<List<KeyValueChange>>.broadcast();
 
   /// The keys of this configuration.
   @override
@@ -35,5 +35,5 @@ class Cookies extends MapBase<String, String> {
 
   /// Returns a string representation of this object.
   @override
-  String toString() => '$runtimeType ${JSON.encode(this)}';
+  String toString() => 'Cookies ${json.encode(this)}';
 }

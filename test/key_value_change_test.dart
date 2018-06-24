@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 void main() => group('KeyValueChange', () {
   group('.toJson()', () {
     test('should return a map with default values for a newly created instance', () {
-      var map = new KeyValueChange('').toJson();
+      var map = KeyValueChange('').toJson();
       expect(map, hasLength(3));
       expect(map['currentValue'], isNull);
       expect(map['key'], isEmpty);
@@ -13,7 +13,7 @@ void main() => group('KeyValueChange', () {
     });
 
     test('should return a non-empty map for an initialized instance', () {
-      var map = new KeyValueChange('foo', currentValue: 'bar', previousValue: 'baz').toJson();
+      var map = KeyValueChange('foo', currentValue: 'bar', previousValue: 'baz').toJson();
       expect(map, hasLength(3));
       expect(map['currentValue'], equals('bar'));
       expect(map['key'], equals('foo'));
@@ -22,7 +22,7 @@ void main() => group('KeyValueChange', () {
   });
 
   group('.toString()', () {
-    var data = new KeyValueChange('foo', currentValue: 'bar', previousValue: 'baz').toString();
+    var data = KeyValueChange('foo', currentValue: 'bar', previousValue: 'baz').toString();
 
     test('should start with the class name', () {
       expect(data, contains('KeyValueChange {'));
