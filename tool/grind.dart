@@ -1,41 +1,45 @@
 import 'dart:async';
 import 'package:grinder/grinder.dart';
 
-/// The list of source directories.
-const List<String> _sources = const ['lib', 'test', 'tool'];
-
 /// Starts the build system.
-Future main(List<String> args) async => grind(args);
+Future<void> main(List<String> args) => grind(args);
 
 /// Deletes all generated files and reset any saved state.
 @Task('Delete the generated files')
-void clean() => defaultClean();
+void clean() {
+  defaultClean();
+  ['.dart_tool/build', 'doc/api', webDir.path].map(getDir).forEach(delete);
+  FileSet.fromDir(getDir('var'), pattern: '*.{info,json}').files.forEach(delete);
+}
 
 /// Uploads the code coverage report.
 @Task('Upload the code coverage')
-Future coverage() async {
-  await Future.wait([
-    Dart.runAsync('test/all.dart', vmArgs: const ['--checked', '--enable-vm-service', '--pause-isolates-on-exit']),
-    Pub.runAsync('coverage', script: 'collect_coverage', arguments: const ['--out=var/coverage.json', '--resume-isolates', '--wait-paused'])
-  ]);
-
-  var args = const ['--in=var/coverage.json', '--lcov', '--out=var/lcov.info', '--packages=.packages', '--report-on=lib'];
-  await Pub.runAsync('coverage', script: 'format_coverage', arguments: args);
-  return Pub.runAsync('coveralls', arguments: const ['var/lcov.info']);
-}
+void coverage() => Pub.run('coveralls', arguments: ['var/lcov.info']);
 
 /// Builds the documentation.
 @Task('Build the documentation')
-void doc() => DartDoc.doc();
+void doc() {
+  DartDoc.doc();
+  run('mkdocs', arguments: ['build']);
+}
 
 /// Fixes the coding standards issues.
 @Task('Fix the coding issues')
-void fix() => DartFmt.format(_sources);
+void fix() => DartFmt.format(existingSourceDirs);
 
 /// Performs static analysis of source code.
 @Task('Perform the static analysis')
-void lint() => Analyzer.analyze(_sources);
+void lint() => Analyzer.analyze(existingSourceDirs);
 
 /// Runs all the test suites.
 @Task('Run the tests')
-void test() => new TestRunner().test(platformSelector: 'firefox');
+void test() => TestRunner().test(platformSelector: 'firefox');
+
+/// Upgrades the project to the latest revision.
+@Task('Upgrade the project')
+void upgrade() {
+  run('git', arguments: ['reset', '--hard']);
+  run('git', arguments: ['fetch', '--all', '--prune']);
+  run('git', arguments: ['pull', '--rebase']);
+  Pub.upgrade();
+}
