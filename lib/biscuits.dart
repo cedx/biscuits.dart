@@ -4,7 +4,8 @@ library biscuits;
 import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
-//import 'dart:html' as dom;
+import 'dart:html' as dom;
+import 'package:intl/intl.dart';
 
 part 'src/cookie_options.dart';
 part 'src/cookies.dart';
