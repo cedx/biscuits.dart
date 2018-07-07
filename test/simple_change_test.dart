@@ -1,36 +1,33 @@
 import 'package:biscuits/biscuits.dart';
 import 'package:test/test.dart';
 
-/// Tests the features of the [KeyValueChange] class.
-void main() => group('KeyValueChange', () {
+/// Tests the features of the [SimpleChange] class.
+void main() => group('SimpleChange', () {
   group('.toJson()', () {
     test('should return a map with default values for a newly created instance', () {
-      var map = KeyValueChange('').toJson();
-      expect(map, hasLength(3));
+      var map = SimpleChange().toJson();
+      expect(map, hasLength(2));
       expect(map['currentValue'], isNull);
-      expect(map['key'], isEmpty);
       expect(map['previousValue'], isNull);
     });
 
     test('should return a non-empty map for an initialized instance', () {
-      var map = KeyValueChange('foo', currentValue: 'bar', previousValue: 'baz').toJson();
-      expect(map, hasLength(3));
+      var map = SimpleChange(currentValue: 'bar', previousValue: 'baz').toJson();
+      expect(map, hasLength(2));
       expect(map['currentValue'], equals('bar'));
-      expect(map['key'], equals('foo'));
       expect(map['previousValue'], equals('baz'));
     });
   });
 
   group('.toString()', () {
-    var data = KeyValueChange('foo', currentValue: 'bar', previousValue: 'baz').toString();
+    var data = SimpleChange(currentValue: 'bar', previousValue: 'baz').toString();
 
     test('should start with the class name', () {
-      expect(data, contains('KeyValueChange {'));
+      expect(data, contains('SimpleChange {'));
     });
 
     test('should contain the instance properties', () {
       expect(data, contains('"currentValue":"bar"'));
-      expect(data, contains('"key":"foo"'));
       expect(data, contains('"previousValue":"baz"'));
     });
   });

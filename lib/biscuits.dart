@@ -9,4 +9,4 @@ import 'package:intl/intl.dart';
 
 part 'src/cookie_options.dart';
 part 'src/cookies.dart';
-part 'src/key_value_change.dart';
+part 'src/simple_change.dart';
