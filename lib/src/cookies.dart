@@ -1,7 +1,8 @@
 part of biscuits;
 
 /// Provides access to the HTTP cookies.
-class Cookies extends MapBase<String, String> {
+/// See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
+class Cookies extends Object with MapMixin<String, String> {
 
   /// The underlying HTML document.
   final dom.HtmlDocument _document;
@@ -10,7 +11,7 @@ class Cookies extends MapBase<String, String> {
   final StreamController<Map<String, SimpleChange>> _onChanges = StreamController<Map<String, SimpleChange>>.broadcast();
 
   /// Creates a new cookie service.
-  Cookies({this.defaults, dom.HtmlDocument document}): _document = document ?? dom.document;
+  Cookies({this.defaults = const CookieOptions(), dom.HtmlDocument document}): _document = document ?? dom.document;
 
   /// The default cookie options.
   final CookieOptions defaults;
@@ -25,63 +26,115 @@ class Cookies extends MapBase<String, String> {
   /// The stream of "changes" events.
   Stream<Map<String, SimpleChange>> get onChanges => _onChanges.stream;
 
-  /// Gets the value associated to the specified key.
+  /// Gets the value associated to the specified [key].
   @override
   String operator [](Object key) {
     if (!containsKey(key)) return null;
-    return null;
 
-    /*
-    var token = Uri.encodeComponent(key).replaceAll(RegExp(r'[-.+*]'), '\$&');
-    var scanner = RegExp(`(?:(?:^|.*;)\\s*${token}\\s*\\=\\s*([^;]*).*$)|^.*$`);
-    return Uri.decodeComponent(_document.cookie.replaceAll(scanner, r'$1')); // TODO replaceAllMapped
-    */
+    try {
+      var token = Uri.encodeComponent(key).replaceAll(RegExp('[-.+*]'), r'\$&');
+      var scanner = RegExp('(?:(?:^|.*;)\\s*$token\\s*\\=\\s*([^;]*).*\$)|^.*\$');
+      return Uri.decodeComponent(_document.cookie.replaceAllMapped(scanner, (match) => match[1]));
+    }
+
+    on Exception {
+      return null;
+    }
   }
 
   /// Associates the [key] with the given [value].
   @override
-  void operator []=(String key, String value) {
-    var previousValue = this[key];
-  }
+  void operator []=(String key, String value) => set(key, value);
 
-  /// Removes all pairs from this configuration.
+  /// Removes all cookies associated with the current document.
   @override
   void clear() {
-    var changes = Map<String, SimpleChange>.fromIterable(keys, value: (key) => SimpleChange(previousValue: this[key]));
-    keys.forEach(_removeItem);
+    var changes = <String, SimpleChange>{};
+    for (var key in keys) {
+      changes[key] = SimpleChange(previousValue: this[key]);
+      _removeItem(key);
+    }
+
     _onChanges.add(changes);
   }
 
   /// Gets a value indicating whether the current document has a cookie with the specified [key].
   @override
   bool containsKey(Object key) {
-    /*
     var token = Uri.encodeComponent(key).replaceAll(RegExp(r'[-.+*]'), r'\$&');
-    return RegExp(r'(?:^|;\s*)$token\s*\=').test(_document.cookie); // TODO check regex
-    */
-    return false;
+    return RegExp('(?:^|;\\s*)$token\\s*\\=').hasMatch(_document.cookie);
   }
 
-  /// Removes the specified [key] and its associated value from this configuration.
+  /// Gets the deserialized value associated to the specified key.
+  /// Returns a `null` reference if the cookie is not found.
+  dynamic getObject(String key) {
+    try {
+      var value = this[key];
+      return value is String ? json.decode(value) : null;
+    }
+
+    on FormatException {
+      return null;
+    }
+  }
+
+  /// Removes the cookie with the specified [key] and its associated value.
   /// Returns the value associated with [key] before it was removed.
   @override
-  String remove(Object key) => null;
+  String remove(Object key, {CookieOptions options}) {
+    var previousValue = this[key];
+    _removeItem(key, options: options);
+    _onChanges.add({
+      key: SimpleChange(previousValue: previousValue)
+    });
 
-  /// Converts this object to a map in JSON format.
-  Map<String, String> toJson() => null;
+    return previousValue;
+  }
+
+  /// Associates a given [value] to the specified [key].
+  /// Throws an [ArgumentError] if the specified key is invalid.
+  void set(String key, String value, {CookieOptions options}) {
+    if (key.isEmpty || RegExp(r'^(domain|expires|max-age|path|secure)$').hasMatch(key))
+      throw ArgumentError.value(key, 'key', 'Invalid cookie name.');
+
+    var cookieOptions = _getOptions(options);
+    var cookieValue = '${Uri.encodeComponent(key)}=${Uri.encodeComponent(value)}';
+    if (cookieOptions.toString().isNotEmpty) cookieValue += '; $cookieOptions';
+
+    var previousValue = this[key];
+    _document.cookie = cookieValue;
+    _onChanges.add({
+      key: SimpleChange(currentValue: value, previousValue: previousValue)
+    });
+  }
+
+  /// Serializes and associates a given [value] to the specified [key].
+  void setObject(String key, Object value, {CookieOptions options}) => set(key, json.encode(value), options: options);
 
   /// Returns a string representation of this object.
   @override
-  String toString() => 'Cookies ${json.encode(this)}';
+  String toString() => _document.cookie;
+
+  /// Merges the default cookie options with the specified ones.
+  CookieOptions _getOptions([CookieOptions options]) {
+    options ??= const CookieOptions();
+    return CookieOptions(
+      domain: options.domain.isNotEmpty ? options.domain : defaults.domain,
+      expires: options.expires != null ? options.expires : defaults.expires,
+      path: options.path.isNotEmpty ? options.path : defaults.path,
+      secure: options.secure ? options.secure : defaults.secure
+    );
+  }
 
   /// Removes the value associated to the specified [key].
   void _removeItem(String key, {CookieOptions options}) {
     if (!containsKey(key)) return;
-
-    /*
-    var {domain, path} = _getOptions(options);
-    var cookieOptions = CookieOptions(domain: domain, expires: 0, path: path);
-    _document.cookie = '${Uri.encodeComponent(key)}=; $cookieOptions';
-    */
+    var cookieOptions = _getOptions(options);
+    _document.cookie = '${Uri.encodeComponent(key)}=; ${CookieOptions(
+      domain: cookieOptions.domain,
+      expires: DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true),
+      path: cookieOptions.path,
+      secure: cookieOptions.secure
+    )}';
   }
 }
