@@ -3,7 +3,7 @@ dart: dev
 dist: trusty
 language: dart
 notifications: {email: false}
-sudo: true
+sudo: required
 
 before_script:
 - export DISPLAY=:99.0
