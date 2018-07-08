@@ -1,9 +1,9 @@
 addons: {chrome: stable}
-dart: [dev]
+dart: dev
 dist: trusty
 language: dart
 notifications: {email: false}
-sudo: false
+sudo: true
 
 before_script:
 - export DISPLAY=:99.0
