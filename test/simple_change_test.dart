@@ -27,8 +27,7 @@ void main() => group('SimpleChange', () {
     });
 
     test('should contain the instance properties', () {
-      expect(data, contains('"currentValue":"bar"'));
-      expect(data, contains('"previousValue":"baz"'));
+      expect(data, allOf(contains('"currentValue":"bar"'), contains('"previousValue":"baz"')));
     });
   });
 });
