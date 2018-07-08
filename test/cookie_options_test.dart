@@ -12,7 +12,7 @@ void main() => group('CookieOptions', () {
 
   group('.toJson()', () {
     test('should return a map with default values for a newly created instance', () {
-      var map = const CookieOptions().toJson();
+      var map = CookieOptions().toJson();
       expect(map, hasLength(4));
       expect(map['domain'], isEmpty);
       expect(map['expires'], isNull);
@@ -32,7 +32,7 @@ void main() => group('CookieOptions', () {
 
   group('.toString()', () {
     test('should return an empty string for a newly created instance', () {
-      expect(const CookieOptions().toString(), isEmpty);
+      expect(CookieOptions().toString(), isEmpty);
     });
 
     test('should return a format like "expires=<expires>; domain=<domain>; path=<path>; secure" for an initialized instance', () {

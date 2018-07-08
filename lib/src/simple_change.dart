@@ -4,7 +4,7 @@ part of biscuits;
 class SimpleChange {
 
   /// Creates a new key-value change record.
-  SimpleChange({this.currentValue, this.previousValue});
+  const SimpleChange({this.currentValue, this.previousValue});
 
   /// The current value for the cookie, or a `null` reference if removed.
   final String currentValue;

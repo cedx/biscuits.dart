@@ -4,19 +4,19 @@ part of biscuits;
 class CookieOptions {
 
   /// Creates new cookie options.
-  const CookieOptions({this.domain = '', this.expires, this.path = '', this.secure = false});
+  CookieOptions({this.domain = '', this.expires, this.path = '', this.secure = false});
 
   /// The domain for which the cookie is valid.
-  final String domain;
+  String domain;
 
   /// The expiration date and time for the cookie.
-  final DateTime expires;
+  DateTime expires;
 
   /// The path to which the cookie applies.
-  final String path;
+  String path;
 
   /// Value indicating whether to transmit the cookie over HTTPS only.
-  final bool secure;
+  bool secure;
 
   /// Converts this object to a map in JSON format.
   Map<String, dynamic> toJson() => {

@@ -11,7 +11,9 @@ class Cookies extends Object with MapMixin<String, String> {
   final StreamController<Map<String, SimpleChange>> _onChanges = StreamController<Map<String, SimpleChange>>.broadcast();
 
   /// Creates a new cookie service.
-  Cookies({this.defaults = const CookieOptions(), dom.HtmlDocument document}): _document = document ?? dom.document;
+  Cookies({CookieOptions defaults, dom.HtmlDocument document}):
+    defaults = defaults ?? CookieOptions(),
+    _document = document ?? dom.document;
 
   /// The default cookie options.
   final CookieOptions defaults;
@@ -81,9 +83,9 @@ class Cookies extends Object with MapMixin<String, String> {
   /// Removes the cookie with the specified [key] and its associated value.
   /// Returns the value associated with [key] before it was removed.
   @override
-  String remove(Object key, {CookieOptions options}) {
+  String remove(Object key, [CookieOptions options]) {
     var previousValue = this[key];
-    _removeItem(key, options: options);
+    _removeItem(key, options);
     _onChanges.add({
       key: SimpleChange(previousValue: previousValue)
     });
@@ -93,7 +95,7 @@ class Cookies extends Object with MapMixin<String, String> {
 
   /// Associates a given [value] to the specified [key].
   /// Throws an [ArgumentError] if the specified key is invalid.
-  void set(String key, String value, {CookieOptions options}) {
+  void set(String key, String value, [CookieOptions options]) {
     if (key.isEmpty || RegExp(r'^(domain|expires|max-age|path|secure)$').hasMatch(key))
       throw ArgumentError.value(key, 'key', 'Invalid cookie name.');
 
@@ -109,7 +111,7 @@ class Cookies extends Object with MapMixin<String, String> {
   }
 
   /// Serializes and associates a given [value] to the specified [key].
-  void setObject(String key, Object value, {CookieOptions options}) => set(key, json.encode(value), options: options);
+  void setObject(String key, Object value, [CookieOptions options]) => set(key, json.encode(value), options);
 
   /// Returns a string representation of this object.
   @override
@@ -117,7 +119,7 @@ class Cookies extends Object with MapMixin<String, String> {
 
   /// Merges the default cookie options with the specified ones.
   CookieOptions _getOptions([CookieOptions options]) {
-    options ??= const CookieOptions();
+    options ??= CookieOptions();
     return CookieOptions(
       domain: options.domain.isNotEmpty ? options.domain : defaults.domain,
       expires: options.expires != null ? options.expires : defaults.expires,
@@ -127,7 +129,7 @@ class Cookies extends Object with MapMixin<String, String> {
   }
 
   /// Removes the value associated to the specified [key].
-  void _removeItem(String key, {CookieOptions options}) {
+  void _removeItem(String key, [CookieOptions options]) {
     if (!containsKey(key)) return;
     var cookieOptions = _getOptions(options);
     _document.cookie = '${Uri.encodeComponent(key)}=; ${CookieOptions(
