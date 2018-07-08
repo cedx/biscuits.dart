@@ -3,9 +3,6 @@
 
 Service for interacting with the [HTTP cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) in [Dart](https://www.dartlang.org).
 
-## Usage
-This package provides a service dedicated to the cookie management: the `Cookies` class.
-
 ## Resources
 - [Documentation](https://dev.belin.io/biscuits.dart)
 - [API reference](https://dev.belin.io/biscuits.dart/api)

@@ -25,7 +25,7 @@ void doc() {
 
 /// Fixes the coding standards issues.
 @Task('Fix the coding issues')
-void fix() => DartFmt.format(existingSourceDirs);
+void fix() => DartFmt.format(existingSourceDirs, lineLength: 200);
 
 /// Performs static analysis of source code.
 @Task('Perform the static analysis')

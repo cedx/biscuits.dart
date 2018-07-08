@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 void main() => group('CookieOptions', () {
   var options = CookieOptions(
     domain: 'domain.com',
-    expires: DateTime.fromMicrosecondsSinceEpoch(0),
+    expires: DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true),
     path: '/path',
     secure: true
   );
