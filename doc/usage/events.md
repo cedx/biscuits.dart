@@ -1,3 +1,6 @@
+path: blob/master/lib
+source: src/simple_change.dart
+
 # Events
 The `Cookies` class triggers a `changes` event every time one or several values are changed (added, removed or updated) through this class.
 
@@ -20,7 +23,7 @@ import 'package:biscuits/biscuits.dart';
 
 void main() {
   final cookies = Cookies();
-  
+
   cookies.onChanges.listen((changes) {
     for (var key in changes.keys()) {
       var change = changes[key];

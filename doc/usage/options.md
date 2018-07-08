@@ -1,3 +1,6 @@
+path: blob/master/lib
+source: src/cookie_options.dart
+
 # Cookie options
 Several methods accept an `options` parameter in order to customize the cookie attributes.
 These options are expressed using an instance of the [`CookieOptions`](https://github.com/cedx/cookies.js/blob/master/lib/cookie_options.js) class, which has the following properties:

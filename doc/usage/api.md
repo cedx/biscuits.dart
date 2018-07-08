@@ -1,3 +1,6 @@
+path: blob/master/lib
+source: src/cookies.dart
+
 # Programming interface
 This package provides a service dedicated to the cookie management: the `Cookies` class.
 
@@ -6,7 +9,7 @@ import 'package:biscuits/biscuits.dart';
 
 void main() {
   final cookies = Cookies();
-    
+
   cookies['foo'] = 'bar';
   print(cookies['foo']); // "bar"
 
@@ -111,7 +114,7 @@ import 'package:biscuits/biscuits.dart';
 
 void main() {
   final cookies = Cookies();
-  
+
   cookies['foo'] = 'bar';
   print(cookies.length); // 1
 
@@ -161,7 +164,7 @@ import 'package:biscuits/biscuits.dart';
 
 void main() {
   final cookies = Cookies();
-  
+
   cookies['foo'] = 'bar';
   print(cookies.containsKey('foo')); // true
 
