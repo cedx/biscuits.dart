@@ -14,7 +14,7 @@ void main() {
   print(cookies['foo']); // "bar"
 
   cookies.setObject('foo', <String, String>{'baz': 'qux'});
-  print(cookies.getObject('bar')); // {"baz": "qux"}
+  print(cookies.getObject('foo')); // {"baz": "qux"}
 }
 ```
 
@@ -84,6 +84,8 @@ import 'package:biscuits/biscuits.dart';
 
 void main() {
   final cookies = Cookies();
+  print(cookies['foo']); // null
+
   cookies['foo'] = 'bar';
   print(cookies['foo']); // "bar"
 }
@@ -146,6 +148,8 @@ import 'package:biscuits/biscuits.dart';
 
 void main() {
   final cookies = Cookies();
+  print(cookies.getObject('foo')); // null
+
   cookies.setObject('foo', <String, String>{'bar': 'baz'});
   print(cookies.getObject('foo')); // {"bar": "baz"}
 }

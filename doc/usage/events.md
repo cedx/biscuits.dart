@@ -11,7 +11,7 @@ import 'package:biscuits/biscuits.dart';
 
 void main() {
   Cookies().onChanges.listen((changes) {
-    for (var change in changes) print(change);
+    for (var entry in changes.entries()) print('${entry.key}: ${entry.value}');
   });
 }
 ```
@@ -25,24 +25,21 @@ void main() {
   final cookies = Cookies();
 
   cookies.onChanges.listen((changes) {
-    for (var key in changes.keys()) {
-      var change = changes[key];
-      print(<String, String>{
-        'key': key,
-        'current': change.currentValue,
-        'previous': change.previousValue
-      });
-    }
+    for (var entry in changes.entries()) print(<String, String>{
+      'key': entry.key,
+      'current': entry.value.currentValue,
+      'previous': entry.value.previousValue
+    });
   });
 
   cookies['foo'] = 'bar';
-  // Prints: {key: "foo", current: "bar", previous: null}
+  // Prints: {"key": "foo", "current": "bar", "previous": null}
 
   cookies['foo'] = 'baz';
-  // Prints: {key: "foo", current: "baz", previous: "bar"}
+  // Prints: {"key": "foo", "current": "baz", "previous": "bar"}
 
   cookies.remove('foo');
-  // Prints: {key: "foo", current: null, previous: "baz"}
+  // Prints: {"key": "foo", "current": null, "previous": "baz"}
 }
 ```
 
@@ -54,6 +51,6 @@ import 'package:biscuits/biscuits.dart';
 void main() {
   final cookies = Cookies();
   cookies.setObject('foo', <String, String>{'bar': 'baz'});
-  // Prints: {key: "foo", current: "{\"bar\": \"baz\"}", previous: null}
+  // Prints: {"key": "foo", "current": "{\"bar\": \"baz\"}", "previous": null}
 }
 ```
