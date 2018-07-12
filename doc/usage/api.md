@@ -42,10 +42,6 @@ void main() {
 }
 ```
 
-!!! tip
-    This property allows the configuration of the default cookie options
-    at runtime.
-
 ## Iterable&lt;String&gt; get **keys**
 Returns the keys of the cookies associated with the current document:
 
