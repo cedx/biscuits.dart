@@ -99,9 +99,9 @@ class Cookies extends Object with MapMixin<String, String> {
     if (key.isEmpty || RegExp(r'^(domain|expires|max-age|path|secure)$').hasMatch(key))
       throw ArgumentError.value(key, 'key', 'Invalid cookie name.');
 
-    var cookieOptions = _getOptions(options);
     var cookieValue = '${Uri.encodeComponent(key)}=${Uri.encodeComponent(value)}';
-    if (cookieOptions.toString().isNotEmpty) cookieValue += '; $cookieOptions';
+    var cookieOptions = _getOptions(options).toString();
+    if (cookieOptions.isNotEmpty) cookieValue += '; $cookieOptions';
 
     var previousValue = this[key];
     _document.cookie = cookieValue;
