@@ -2,7 +2,7 @@ name: biscuits
 version: 0.2.0
 
 author: Cédric Belin <cedric@belin.io>
-description: Service for interacting with the HTTP cookies.
+description: Service for interacting with the HTTP cookies. A simple and event-based API for handling cookies.
 documentation: https://dev.belin.io/biscuits.dart/api
 homepage: https://dev.belin.io/biscuits.dart
 
