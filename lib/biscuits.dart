@@ -6,7 +6,9 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:html' as dom;
 import 'package:intl/intl.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'biscuits.g.dart';
 part 'src/cookie_options.dart';
 part 'src/cookies.dart';
 part 'src/simple_change.dart';
