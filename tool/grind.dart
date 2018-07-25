@@ -4,6 +4,10 @@ import 'package:grinder/grinder.dart';
 /// Starts the build system.
 Future<void> main(List<String> args) => grind(args);
 
+/// Builds the project.
+@DefaultTask('Build the project')
+void build() => Pub.run('build_runner', arguments: ['build']);
+
 /// Deletes all generated files and reset any saved state.
 @Task('Delete the generated files')
 void clean() {
@@ -33,7 +37,8 @@ void lint() => Analyzer.analyze(existingSourceDirs);
 
 /// Runs all the test suites.
 @Task('Run the tests')
-void test() => TestRunner().test(platformSelector: 'firefox');
+@Depends(build)
+void test() => TestRunner().test();
 
 /// Upgrades the project to the latest revision.
 @Task('Upgrade the project')
