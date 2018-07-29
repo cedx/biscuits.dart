@@ -30,7 +30,7 @@ import 'package:biscuits/biscuits.dart';
 void main() {
   final cookies = Cookies();
   print(json.encode(cookies.defaults));
-  // {"domain": "", "expires": null, "path": "/", "secure": false}
+  // {"domain": "", "expires": null, "path": "", "secure": false}
 
   cookies.defaults
     ..domain = 'domain.com'

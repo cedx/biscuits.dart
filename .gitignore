@@ -6,6 +6,6 @@
 
 /*.iml
 /**/.DS_Store
+/**/*.g.dart
 /.packages
 /pubspec.lock
-/lib/**/*.g.dart
