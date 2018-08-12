@@ -1,4 +1,4 @@
-part of biscuits;
+part of '../biscuits.dart';
 
 /// Provides access to the HTTP cookies.
 /// See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies

@@ -1,4 +1,4 @@
-part of biscuits;
+part of '../biscuits.dart';
 
 /// Defines the attributes of a HTTP cookie.
 @JsonSerializable()

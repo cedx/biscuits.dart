@@ -1,4 +1,4 @@
-part of biscuits;
+part of '../biscuits.dart';
 
 /// Represents the event parameter used for a cookie change event.
 @JsonSerializable()
