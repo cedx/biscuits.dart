@@ -5,6 +5,7 @@ language: dart
 notifications: {email: false}
 sudo: required
 
+install: pub get
 before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
