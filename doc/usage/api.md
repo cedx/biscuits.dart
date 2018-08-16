@@ -21,7 +21,7 @@ void main() {
 The `Cookies` class implements the [`Map`](https://api.dartlang.org/dev/dart-core/Map-class.html) interface and has the following API:
 
 ## CookieOptions get **defaults**
-Returns the default options to pass when setting cookies:
+Returns the default [options](options.md) to pass when setting cookies:
 
 ```dart
 import 'dart:convert';
