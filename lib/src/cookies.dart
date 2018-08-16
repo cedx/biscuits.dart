@@ -21,7 +21,7 @@ class Cookies extends Object with MapMixin<String, String> {
   /// The keys of the cookies associated with the current document.
   @override
   Iterable<String> get keys {
-    var keys = _document.cookie.replaceAll(RegExp(r'((?:^|\s*;)[^=]+)(?=;|$)|^\s*|\s*(?:=[^;]*)?(?:\1|$)'), '');
+    final keys = _document.cookie.replaceAll(RegExp(r'((?:^|\s*;)[^=]+)(?=;|$)|^\s*|\s*(?:=[^;]*)?(?:\1|$)'), '');
     return keys.isNotEmpty ? keys.split(RegExp(r'\s*(?:=[^;]*)?;\s*')).map(Uri.decodeComponent) : <String>[];
   }
 
@@ -34,8 +34,8 @@ class Cookies extends Object with MapMixin<String, String> {
     if (!containsKey(key)) return null;
 
     try {
-      var token = Uri.encodeComponent(key).replaceAll(RegExp('[-.+*]'), r'\$&');
-      var scanner = RegExp('(?:(?:^|.*;)\\s*$token\\s*\\=\\s*([^;]*).*\$)|^.*\$');
+      final token = Uri.encodeComponent(key).replaceAll(RegExp('[-.+*]'), r'\$&');
+      final scanner = RegExp('(?:(?:^|.*;)\\s*$token\\s*\\=\\s*([^;]*).*\$)|^.*\$');
       return Uri.decodeComponent(_document.cookie.replaceAllMapped(scanner, (match) => match[1]));
     }
 
@@ -51,8 +51,8 @@ class Cookies extends Object with MapMixin<String, String> {
   /// Removes all cookies associated with the current document.
   @override
   void clear() {
-    var changes = <String, SimpleChange>{};
-    for (var key in keys) {
+    final changes = <String, SimpleChange>{};
+    for (final key in keys) {
       changes[key] = SimpleChange(previousValue: this[key]);
       _removeItem(key);
     }
@@ -63,7 +63,7 @@ class Cookies extends Object with MapMixin<String, String> {
   /// Gets a value indicating whether the current document has a cookie with the specified [key].
   @override
   bool containsKey(Object key) {
-    var token = Uri.encodeComponent(key).replaceAll(RegExp(r'[-.+*]'), r'\$&');
+    final token = Uri.encodeComponent(key).replaceAll(RegExp(r'[-.+*]'), r'\$&');
     return RegExp('(?:^|;\\s*)$token\\s*\\=').hasMatch(_document.cookie);
   }
 
@@ -71,7 +71,7 @@ class Cookies extends Object with MapMixin<String, String> {
   /// Returns a `null` reference if the cookie is not found.
   dynamic getObject(String key) {
     try {
-      var value = this[key];
+      final value = this[key];
       return value is String ? json.decode(value) : null;
     }
 
@@ -84,7 +84,7 @@ class Cookies extends Object with MapMixin<String, String> {
   /// Returns the value associated with [key] before it was removed.
   @override
   String remove(Object key, [CookieOptions options]) {
-    var previousValue = this[key];
+    final previousValue = this[key];
     _removeItem(key, options);
     _onChanges.add({
       key: SimpleChange(previousValue: previousValue)
@@ -99,11 +99,11 @@ class Cookies extends Object with MapMixin<String, String> {
     if (key.isEmpty || RegExp(r'^(domain|expires|max-age|path|secure)$').hasMatch(key))
       throw ArgumentError.value(key, 'key', 'Invalid cookie name.');
 
+    final cookieOptions = _getOptions(options).toString();
     var cookieValue = '${Uri.encodeComponent(key)}=${Uri.encodeComponent(value)}';
-    var cookieOptions = _getOptions(options).toString();
     if (cookieOptions.isNotEmpty) cookieValue += '; $cookieOptions';
 
-    var previousValue = this[key];
+    final previousValue = this[key];
     _document.cookie = cookieValue;
     _onChanges.add({
       key: SimpleChange(currentValue: value, previousValue: previousValue)
@@ -131,7 +131,7 @@ class Cookies extends Object with MapMixin<String, String> {
   /// Removes the value associated to the specified [key].
   void _removeItem(String key, [CookieOptions options]) {
     if (!containsKey(key)) return;
-    var cookieOptions = _getOptions(options);
+    final cookieOptions = _getOptions(options);
     _document.cookie = '${Uri.encodeComponent(key)}=; ${CookieOptions(
       domain: cookieOptions.domain,
       expires: DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true),

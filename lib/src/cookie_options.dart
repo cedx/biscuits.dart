@@ -31,8 +31,8 @@ class CookieOptions {
   /// Returns a string representation of this object.
   @override
   String toString() {
-    var formatter = DateFormat('EEE, dd MMM yyyy HH:mm:ss', 'en_US');
-    var value = [];
+    final formatter = DateFormat('EEE, dd MMM yyyy HH:mm:ss', 'en_US');
+    final value = [];
     if (expires != null) value.add('expires=${formatter.format(expires.toUtc())} GMT');
     if (domain.isNotEmpty) value.add('domain=$domain');
     if (path.isNotEmpty) value.add('path=$path');

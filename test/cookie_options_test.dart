@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 /// Tests the features of the [CookieOptions] class.
 void main() => group('CookieOptions', () {
-  var options = CookieOptions(
+  final options = CookieOptions(
     domain: 'domain.com',
     expires: DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true),
     path: '/path',
@@ -12,7 +12,7 @@ void main() => group('CookieOptions', () {
 
   group('.toJson()', () {
     test('should return a map with default values for a newly created instance', () {
-      var map = CookieOptions().toJson();
+      final map = CookieOptions().toJson();
       expect(map, hasLength(4));
       expect(map['domain'], isEmpty);
       expect(map['expires'], isNull);
@@ -21,7 +21,7 @@ void main() => group('CookieOptions', () {
     });
 
     test('should return a non-empty map for an initialized instance', () {
-      var map = options.toJson();
+      final map = options.toJson();
       expect(map, hasLength(4));
       expect(map['domain'], equals('domain.com'));
       expect(map['expires'], equals('1970-01-01T00:00:00.000Z'));

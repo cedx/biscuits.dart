@@ -5,9 +5,9 @@ import 'package:test/test.dart';
 /// Tests the features of the [Cookies] class.
 void main() => group('Cookies', () {
   Map<String, String> getNativeCookies() {
-    var nativeCookies = <String, String>{};
-    if (dom.document.cookie.isNotEmpty) for (var value in dom.document.cookie.split(';')) {
-      var index = value.indexOf('=');
+    final nativeCookies = <String, String>{};
+    if (dom.document.cookie.isNotEmpty) for (final value in dom.document.cookie.split(';')) {
+      final index = value.indexOf('=');
       nativeCookies[value.substring(0, index)] = value.substring(index + 1);
     }
 
@@ -32,7 +32,7 @@ void main() => group('Cookies', () {
     });
 
     test('should return the number of cookies associated with the current document', () {
-      var nativeCookies = getNativeCookies();
+      final nativeCookies = getNativeCookies();
       dom.document.cookie = 'length1=foo';
       dom.document.cookie = 'length2=bar';
       expect(Cookies().length, inInclusiveRange(nativeCookies.length, nativeCookies.length + 2));
@@ -43,11 +43,11 @@ void main() => group('Cookies', () {
     test('should trigger an event when a cookie is added', () {
       dom.document.cookie = 'onChanges=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
 
-      var cookies = Cookies();
+      final cookies = Cookies();
       cookies.onChanges.listen(expectAsync1((changes) {
         expect(changes, hasLength(1));
 
-        var record = changes.values.first;
+        final record = changes.values.first;
         expect(changes.keys.first, equals('onChanges'));
         expect(record.currentValue, equals('foo'));
         expect(record.previousValue, isNull);
@@ -59,11 +59,11 @@ void main() => group('Cookies', () {
     test('should trigger an event when a cookie is updated', () {
       dom.document.cookie = 'onChanges=foo';
 
-      var cookies = Cookies();
+      final cookies = Cookies();
       cookies.onChanges.listen(expectAsync1((changes) {
         expect(changes, hasLength(1));
 
-        var record = changes.values.first;
+        final record = changes.values.first;
         expect(changes.keys.first, equals('onChanges'));
         expect(record.currentValue, equals('bar'));
         expect(record.previousValue, equals('foo'));
@@ -75,11 +75,11 @@ void main() => group('Cookies', () {
     test('should trigger an event when a cookie is removed', () {
       dom.document.cookie = 'onChanges=bar';
 
-      var cookies = Cookies();
+      final cookies = Cookies();
       cookies.onChanges.listen(expectAsync1((changes) {
         expect(changes, hasLength(1));
 
-        var record = changes.values.first;
+        final record = changes.values.first;
         expect(changes.keys.first, equals('onChanges'));
         expect(record.currentValue, isNull);
         expect(record.previousValue, equals('bar'));
@@ -92,7 +92,7 @@ void main() => group('Cookies', () {
       dom.document.cookie = 'onChanges1=foo';
       dom.document.cookie = 'onChanges2=bar';
 
-      var cookies = Cookies();
+      final cookies = Cookies();
       cookies.onChanges.listen(expectAsync1((changes) {
         expect(changes.length, greaterThanOrEqualTo(2));
 
@@ -113,7 +113,7 @@ void main() => group('Cookies', () {
 
   group('operator [] / operator []=', () {
     test('should properly get the cookies associated with the current document', () {
-      var cookies = Cookies();
+      final cookies = Cookies();
       expect(cookies['foo'], isNull);
 
       dom.document.cookie = 'get1=foo';
@@ -124,7 +124,7 @@ void main() => group('Cookies', () {
     });
 
     test('should properly set the cookies associated with the current document', () {
-      var cookies = Cookies();
+      final cookies = Cookies();
       expect(dom.document.cookie, isNot(contains('set1')));
       expect(dom.document.cookie, isNot(contains('set2')));
 
@@ -142,7 +142,7 @@ void main() => group('Cookies', () {
     });
 
     test('should throw an error if the specified key is a reserved word', () {
-      var cookies = Cookies();
+      final cookies = Cookies();
       expect(() => cookies['domain'] = 'foo', throwsArgumentError);
       expect(() => cookies['expires'] = 'foo', throwsArgumentError);
       expect(() => cookies['max-age'] = 'foo', throwsArgumentError);
@@ -171,7 +171,7 @@ void main() => group('Cookies', () {
       dom.document.cookie = 'has1=foo';
       dom.document.cookie = 'has2=bar';
 
-      var cookies = Cookies();
+      final cookies = Cookies();
       expect(cookies.containsKey('has1'), isTrue);
       expect(cookies.containsKey('has2'), isTrue);
       expect(cookies.containsKey('foo'), isFalse);
@@ -181,7 +181,7 @@ void main() => group('Cookies', () {
 
   group('.getObject()', () {
     test('should properly get the deserialized cookies associated with the current document', () {
-      var cookies = Cookies();
+      final cookies = Cookies();
       expect(cookies.getObject('foo'), isNull);
 
       dom.document.cookie = 'getObject1=123';
@@ -191,7 +191,7 @@ void main() => group('Cookies', () {
       expect(cookies.getObject('getObject2'), equals('bar'));
 
       dom.document.cookie = 'getObject3=%7B%22key%22%3A%22value%22%7D';
-      var object = cookies.getObject('getObject3');
+      final object = cookies.getObject('getObject3');
       expect(object, allOf(isMap, hasLength(1)));
       expect(object['key'], equals('value'));
     });
@@ -207,7 +207,7 @@ void main() => group('Cookies', () {
       dom.document.cookie = 'remove1=foo';
       dom.document.cookie = 'remove2=bar';
 
-      var cookies = Cookies()..remove('remove1');
+      final cookies = Cookies()..remove('remove1');
       expect(dom.document.cookie, isNot(contains('remove1')));
       expect(dom.document.cookie, contains('remove2=bar'));
 
@@ -218,7 +218,7 @@ void main() => group('Cookies', () {
 
   group('.setObject()', () {
     test('should properly serialize and set the cookies associated with the current document', () {
-      var cookies = Cookies();
+      final cookies = Cookies();
       expect(dom.document.cookie, isNot(contains('setObject1')));
       expect(dom.document.cookie, isNot(contains('setObject2')));
 
@@ -236,7 +236,7 @@ void main() => group('Cookies', () {
     });
 
     test('should throw an error if the specified key is a reserved word', () {
-      var cookies = Cookies();
+      final cookies = Cookies();
       expect(() => cookies.setObject('domain', 'foo'), throwsArgumentError);
       expect(() => cookies.setObject('expires', 'foo'), throwsArgumentError);
       expect(() => cookies.setObject('max-age', 'foo'), throwsArgumentError);
