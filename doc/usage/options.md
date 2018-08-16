@@ -1,5 +1,5 @@
-path: blob/master/lib
-source: src/cookie_options.dart
+path: blob/master
+source: lib/src/cookie_options.dart
 
 # Cookie options
 Several methods accept an `options` parameter in order to customize the cookie attributes.

@@ -1,5 +1,5 @@
-path: blob/master/lib
-source: src/cookies.dart
+path: blob/master
+source: lib/src/cookies.dart
 
 # Programming interface
 This package provides a service dedicated to the cookie management: the `Cookies` class.
@@ -156,7 +156,7 @@ void main() {
 
 Returns a `null` reference if the key is not found.
 
-## String **remove**(Object key, [CookieOptions options])
+## String **remove**(String key, [CookieOptions options])
 Removes the value associated to the specified key:
 
 ```dart
