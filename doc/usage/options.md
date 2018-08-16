@@ -3,7 +3,7 @@ source: lib/src/cookie_options.dart
 
 # Cookie options
 Several methods accept an `options` parameter in order to customize the cookie attributes.
-These options are expressed using an instance of the [`CookieOptions`](https://github.com/cedx/cookies.js/blob/master/lib/cookie_options.js) class, which has the following properties:
+These options are expressed using an instance of the [`CookieOptions`](https://github.com/cedx/biscuits.dart/blob/master/lib/src/cookie_options.dart) class, which has the following properties:
 
 - String **domain** = `""`: The domain for which the cookie is valid.
 - DateTime **expires** = `null`: The expiration date and time for the cookie.
