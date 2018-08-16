@@ -2,7 +2,7 @@ path: blob/master
 source: lib/src/simple_change.dart
 
 # Events
-The `Cookies` class triggers a `changes` event every time one or several values are changed (added, removed or updated) through this class.
+The [`Cookies`](api.md) class triggers a `changes` event every time one or several values are changed (added, removed or updated) through this class.
 
 These events are exposed as [`Stream`](https://api.dartlang.org/stable/dart-async/Stream-class.html), you can listen to them using the `onChanges` property:
 
