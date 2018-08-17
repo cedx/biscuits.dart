@@ -8,7 +8,7 @@ class Cookies extends Object with MapMixin<String, String> {
   final dom.Document _document;
 
   /// The handler of "changes" events.
-  final StreamController<Map<String, SimpleChange>> _onChanges = StreamController<Map<String, SimpleChange>>.broadcast();
+  final StreamController<Map<String, SimpleChange<String>>> _onChanges = StreamController<Map<String, SimpleChange>>.broadcast();
 
   /// Creates a new cookie service.
   Cookies({CookieOptions defaults, dom.Document document}):
@@ -26,7 +26,7 @@ class Cookies extends Object with MapMixin<String, String> {
   }
 
   /// The stream of "changes" events.
-  Stream<Map<String, SimpleChange>> get onChanges => _onChanges.stream;
+  Stream<Map<String, SimpleChange<String>>> get onChanges => _onChanges.stream;
 
   /// Gets the value associated to the specified [key].
   @override
@@ -51,9 +51,9 @@ class Cookies extends Object with MapMixin<String, String> {
   /// Removes all cookies associated with the current document.
   @override
   void clear() {
-    final changes = <String, SimpleChange>{};
+    final changes = <String, SimpleChange<String>>{};
     for (final key in keys) {
-      changes[key] = SimpleChange(previousValue: this[key]);
+      changes[key] = SimpleChange<String>(previousValue: this[key]);
       _removeItem(key);
     }
 
@@ -87,7 +87,7 @@ class Cookies extends Object with MapMixin<String, String> {
     final previousValue = this[key];
     _removeItem(key, options);
     _onChanges.add({
-      key: SimpleChange(previousValue: previousValue)
+      key: SimpleChange<String>(previousValue: previousValue)
     });
 
     return previousValue;
@@ -106,12 +106,15 @@ class Cookies extends Object with MapMixin<String, String> {
     final previousValue = this[key];
     _document.cookie = cookieValue;
     _onChanges.add({
-      key: SimpleChange(currentValue: value, previousValue: previousValue)
+      key: SimpleChange<String>(currentValue: value, previousValue: previousValue)
     });
   }
 
   /// Serializes and associates a given [value] to the specified [key].
   void setObject(String key, Object value, [CookieOptions options]) => set(key, json.encode(value), options);
+
+  /// Converts this object to a [Map] in JSON format.
+  Map<String, dynamic> toJson() => Map<String, dynamic>.from(this);
 
   /// Returns a string representation of this object.
   @override
@@ -131,12 +134,7 @@ class Cookies extends Object with MapMixin<String, String> {
   /// Removes the value associated to the specified [key].
   void _removeItem(String key, [CookieOptions options]) {
     if (!containsKey(key)) return;
-    final cookieOptions = _getOptions(options);
-    _document.cookie = '${Uri.encodeComponent(key)}=; ${CookieOptions(
-      domain: cookieOptions.domain,
-      expires: DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true),
-      path: cookieOptions.path,
-      secure: cookieOptions.secure
-    )}';
+    final cookieOptions = _getOptions(options)..expires = DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true);
+    _document.cookie = '${Uri.encodeComponent(key)}=; $cookieOptions';
   }
 }

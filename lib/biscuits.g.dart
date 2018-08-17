@@ -23,15 +23,3 @@ Map<String, dynamic> _$CookieOptionsToJson(CookieOptions instance) =>
       'path': instance.path,
       'secure': instance.secure
     };
-
-SimpleChange _$SimpleChangeFromJson(Map<String, dynamic> json) {
-  return SimpleChange(
-      currentValue: json['currentValue'] as String,
-      previousValue: json['previousValue'] as String);
-}
-
-Map<String, dynamic> _$SimpleChangeToJson(SimpleChange instance) =>
-    <String, dynamic>{
-      'currentValue': instance.currentValue,
-      'previousValue': instance.previousValue
-    };
