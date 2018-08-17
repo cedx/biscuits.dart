@@ -16,7 +16,7 @@ void main() {
 }
 ```
 
-The changes are expressed as a [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) of [`SimpleChange`](https://github.com/cedx/biscuits.dart/blob/master/lib/src/simple_change.dart) instances, where a `null` property indicates an absence of value:
+The changes are expressed as a [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) of [`SimpleChange<String>`](https://github.com/cedx/biscuits.dart/blob/master/lib/src/simple_change.dart) instances, where a `null` property indicates an absence of value:
 
 ```dart
 import 'package:biscuits/biscuits.dart';
@@ -43,7 +43,7 @@ void main() {
 }
 ```
 
-The values contained in the `currentValue` and `previousValue` properties of the `SimpleChange` instances are the raw cookie values. If you use the `Cookies#setObject()` method to set a cookie, you will get the serialized string value, not the original value passed to the method:
+The values contained in the `currentValue` and `previousValue` properties of the `SimpleChange<String>` instances are the raw cookie values. If you use the `Cookies#setObject()` method to set a cookie, you will get the serialized string value, not the original value passed to the method:
 
 ```dart
 import 'package:biscuits/biscuits.dart';
