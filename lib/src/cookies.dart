@@ -8,7 +8,7 @@ class Cookies extends Object with MapMixin<String, String> {
   final dom.Document _document;
 
   /// The handler of "changes" events.
-  final StreamController<Map<String, SimpleChange<String>>> _onChanges = StreamController<Map<String, SimpleChange>>.broadcast();
+  final StreamController<Map<String, SimpleChange<String>>> _onChanges = StreamController<Map<String, SimpleChange<String>>>.broadcast();
 
   /// Creates a new cookie service.
   Cookies({CookieOptions defaults, dom.Document document}):
