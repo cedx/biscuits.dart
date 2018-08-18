@@ -264,7 +264,7 @@ void main() => group('Cookies', () {
   });
 
   group('.toString()', () {
-    test('should be the same value as `document.cookie` global property', () {
+    test('should be the same value as the `document.cookie` property', () {
       expect(Cookies().toString(), equals(dom.document.cookie));
     });
   });

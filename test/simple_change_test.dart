@@ -38,14 +38,14 @@ void main() => group('SimpleChange', () {
   });
 
   group('.toString()', () {
-    final change = const SimpleChange<int>(currentValue: 123, previousValue: 456).toString();
+    final data = const SimpleChange<int>(currentValue: 123, previousValue: 456).toString();
 
     test('should start with the class name', () {
-      expect(change, contains('SimpleChange {'));
+      expect(data, contains('SimpleChange {'));
     });
 
     test('should contain the instance properties', () {
-      expect(change, allOf(contains('"currentValue":123'), contains('"previousValue":456')));
+      expect(data, allOf(contains('"currentValue":123'), contains('"previousValue":456')));
     });
   });
 });
