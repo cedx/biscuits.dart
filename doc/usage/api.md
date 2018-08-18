@@ -72,38 +72,6 @@ void main() {
 }
 ```
 
-## String **operator []**(String key)
-Returns the value associated to the specified key:
-
-```dart
-import 'package:biscuits/biscuits.dart';
-
-void main() {
-  final cookies = Cookies();
-  print(cookies['foo']); // null
-
-  cookies['foo'] = 'bar';
-  print(cookies['foo']); // "bar"
-}
-```
-
-Returns a `null` reference if the key is not found.
-
-## void **operator []=**(String key, String value)
-Associates a given value to the specified key:
-
-```dart
-import 'package:biscuits/biscuits.dart';
-
-void main() {
-  final cookies = Cookies();
-  print(cookies['foo']); // null
-
-  cookies['foo'] = 'bar';
-  print(cookies['foo']); // "bar"
-}
-```
-
 ## void **clear**()
 Removes all cookies associated with the current document:
 
@@ -136,7 +104,25 @@ void main() {
 }
 ```
 
-## dynamic **getObject**(String key)
+## String **get**(String key, [String defaultValue])
+Returns the value associated to the specified key:
+
+```dart
+import 'package:biscuits/biscuits.dart';
+
+void main() {
+  final cookies = Cookies();
+  print(cookies.get('foo')); // null
+  print(cookies.get('foo', 'qux')); // "qux"
+
+  cookies['foo'] = 'bar';
+  print(cookies.get('foo')); // "bar"
+}
+```
+
+Returns a `null` reference or the given default value if the key is not found.
+
+## dynamic **getObject**(String key, [Object defaultValue])
 Deserializes and returns the value associated to the specified key:
 
 ```dart
@@ -145,6 +131,7 @@ import 'package:biscuits/biscuits.dart';
 void main() {
   final cookies = Cookies();
   print(cookies.getObject('foo')); // null
+  print(cookies.getObject('foo', 'qux')); // "qux"
 
   cookies.setObject('foo', <String, String>{'bar': 'baz'});
   print(cookies.getObject('foo')); // {"bar": "baz"}
@@ -154,7 +141,7 @@ void main() {
 !!! info
     The value is deserialized using the [`JsonCodec.decode`](https://api.dartlang.org/stable/dart-convert/JsonCodec/decode.html) method.
 
-Returns a `null` reference if the key is not found.
+Returns a `null` reference or the given default value if the key is not found.
 
 ## String **remove**(String key, [CookieOptions options])
 Removes the value associated to the specified key:
