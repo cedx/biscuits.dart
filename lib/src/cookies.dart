@@ -28,19 +28,7 @@ class Cookies extends Object with MapMixin<String, String> {
 
   /// Gets the value associated to the specified [key].
   @override
-  String operator [](Object key) {
-    if (!containsKey(key)) return null;
-
-    try {
-      final token = Uri.encodeComponent(key).replaceAll(RegExp('[-.+*]'), r'\$&');
-      final scanner = RegExp('(?:(?:^|.*;)\\s*$token\\s*\\=\\s*([^;]*).*\$)|^.*\$');
-      return Uri.decodeComponent(_document.cookie.replaceAllMapped(scanner, (match) => match[1]));
-    }
-
-    on Exception {
-      return null;
-    }
-  }
+  String operator [](Object key) => get(key);
 
   /// Associates the [key] with the given [value].
   @override
@@ -65,16 +53,32 @@ class Cookies extends Object with MapMixin<String, String> {
     return RegExp('(?:^|;\\s*)$token\\s*\\=').hasMatch(_document.cookie);
   }
 
+  /// Gets the value associated to the specified [key].
+  /// Returns the given default value if the cookie is not found.
+  String get(String key, [String defaultValue]) {
+    if (!containsKey(key)) return defaultValue;
+
+    try {
+      final token = Uri.encodeComponent(key).replaceAll(RegExp('[-.+*]'), r'\$&');
+      final scanner = RegExp('(?:(?:^|.*;)\\s*$token\\s*\\=\\s*([^;]*).*\$)|^.*\$');
+      return Uri.decodeComponent(_document.cookie.replaceAllMapped(scanner, (match) => match[1]));
+    }
+
+    on Exception {
+      return defaultValue;
+    }
+  }
+
   /// Gets the deserialized value associated to the specified key.
-  /// Returns a `null` reference if the cookie is not found.
-  dynamic getObject(String key) {
+  /// Returns the given default value if the cookie is not found.
+  dynamic getObject(String key, [Object defaultValue]) {
     try {
       final value = this[key];
-      return value is String ? json.decode(value) : null;
+      return value is String ? json.decode(value) : defaultValue;
     }
 
     on FormatException {
-      return null;
+      return defaultValue;
     }
   }
 

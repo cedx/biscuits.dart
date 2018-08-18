@@ -3,6 +3,7 @@
 ## Version [1.1.0](https://github.com/cedx/biscuits.dart/compare/v1.0.0...v1.1.0)
 - The `Cookies` constructor now accepts a `Document` instance instead of an `HtmlDocument` one.
 - The `SimpleChange` class is now generic.
+- Added a `defaultValue` argument to the `get()` and `getObject()` methods of the `Cookies` class.
 - Added the `Cookies.toJson()` method.
 - Added new unit tests.
 

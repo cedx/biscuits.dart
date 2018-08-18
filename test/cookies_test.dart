@@ -179,6 +179,25 @@ void main() => group('Cookies', () {
     });
   });
 
+  group('.get()', () {
+    test('should properly get the cookies associated with the current document', () {
+      final cookies = Cookies();
+      expect(cookies['foo'], isNull);
+
+      dom.document.cookie = 'get1=foo';
+      expect(cookies['get1'], equals('foo'));
+
+      dom.document.cookie = 'get2=123';
+      expect(cookies['get2'], equals('123'));
+    });
+
+    test('should return the given default value if the cookie is not found', () {
+      final cookies = Cookies();
+      expect(cookies.get('foo'), isNull);
+      expect(cookies.get('foo', 'bar'), equals('bar'));
+    });
+  });
+
   group('.getObject()', () {
     test('should properly get the deserialized cookies associated with the current document', () {
       final cookies = Cookies();
@@ -200,6 +219,12 @@ void main() => group('Cookies', () {
       dom.document.cookie = 'getObject4=bar';
       expect(Cookies().getObject('getObject4'), isNull);
     });
+
+    test('should return the given default value if the cookie is not found', () {
+      final cookies = Cookies();
+      expect(cookies.getObject('foo'), isNull);
+      expect(cookies.getObject('foo', {}), allOf(isMap, isEmpty));
+    });
   });
 
   group('.remove()', () {
@@ -213,6 +238,35 @@ void main() => group('Cookies', () {
 
       cookies.remove('remove2');
       expect(dom.document.cookie, isNot(contains('remove2')));
+    });
+  });
+
+  group('.set()', () {
+    test('should properly set the cookies associated with the current document', () {
+      final cookies = Cookies();
+      expect(dom.document.cookie, isNot(contains('set1')));
+      expect(dom.document.cookie, isNot(contains('set2')));
+
+      cookies['set1'] = 'foo';
+      expect(dom.document.cookie, contains('set1=foo'));
+      expect(dom.document.cookie, isNot(contains('set2')));
+
+      cookies['set2'] = 'bar';
+      expect(dom.document.cookie, contains('set1=foo'));
+      expect(dom.document.cookie, contains('set2=bar'));
+
+      cookies['set1'] = '123';
+      expect(dom.document.cookie, contains('set1=123'));
+      expect(dom.document.cookie, contains('set2=bar'));
+    });
+
+    test('should throw an error if the specified key is a reserved word', () {
+      final cookies = Cookies();
+      expect(() => cookies['domain'] = 'foo', throwsArgumentError);
+      expect(() => cookies['expires'] = 'foo', throwsArgumentError);
+      expect(() => cookies['max-age'] = 'foo', throwsArgumentError);
+      expect(() => cookies['path'] = 'foo', throwsArgumentError);
+      expect(() => cookies['secure'] = 'foo', throwsArgumentError);
     });
   });
 
