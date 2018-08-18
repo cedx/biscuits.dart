@@ -22,7 +22,7 @@ void main() => group('CookieOptions', () {
     test('should return an initialized instance for a non-empty map', () {
       final cookieOptions = CookieOptions.fromJson(options.toJson());
       expect(cookieOptions.domain, options.domain);
-      expect(cookieOptions.expires, options.expires);
+      expect(cookieOptions.expires.millisecondsSinceEpoch, options.expires.millisecondsSinceEpoch);
       expect(cookieOptions.path, options.path);
       expect(cookieOptions.secure, options.secure);
     });
