@@ -11,11 +11,7 @@ void main() => group('SimpleChange', () {
     });
 
     test('should return an initialized instance with a non-empty map', () {
-      final change = SimpleChange<int>.fromJson({
-        'currentValue': 123,
-        'previousValue': 456
-      });
-
+      final change = SimpleChange<int>.fromJson({'currentValue': 123, 'previousValue': 456});
       expect(change.currentValue, equals(123));
       expect(change.previousValue, equals(456));
     });
