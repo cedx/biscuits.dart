@@ -11,9 +11,7 @@ class Cookies extends Object with MapMixin<String, String> {
   final StreamController<Map<String, SimpleChange<String>>> _onChanges = StreamController<Map<String, SimpleChange<String>>>.broadcast();
 
   /// Creates a new cookie service.
-  Cookies({CookieOptions defaults, dom.Document document}):
-    defaults = defaults ?? CookieOptions(),
-    _document = document ?? dom.document;
+  Cookies({CookieOptions defaults, dom.Document document}): defaults = defaults ?? CookieOptions(), _document = document ?? dom.document;
 
   /// The default cookie options.
   final CookieOptions defaults;

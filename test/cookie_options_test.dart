@@ -10,6 +10,24 @@ void main() => group('CookieOptions', () {
     secure: true
   );
 
+  group('.fromJson()', () {
+    test('should return an instance with default values for an empty map', () {
+      final cookieOptions = CookieOptions.fromJson({});
+      expect(cookieOptions.domain, isEmpty);
+      expect(cookieOptions.expires, isNull);
+      expect(cookieOptions.path, isEmpty);
+      expect(cookieOptions.secure, isFalse);
+    });
+
+    test('should return an initialized instance for a non-empty map', () {
+      final cookieOptions = CookieOptions.fromJson(options.toJson());
+      expect(cookieOptions.domain, options.domain);
+      expect(cookieOptions.expires, options.expires);
+      expect(cookieOptions.path, options.path);
+      expect(cookieOptions.secure, options.secure);
+    });
+  });
+
   group('.toJson()', () {
     test('should return a map with default values for a newly created instance', () {
       final map = CookieOptions().toJson();

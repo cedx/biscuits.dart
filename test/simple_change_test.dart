@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 /// Tests the features of the [SimpleChange] class.
 void main() => group('SimpleChange', () {
-  group('#fromJson()', () {
+  group('.fromJson()', () {
     test('should return an empty instance with an empty map', () {
       final change = SimpleChange<String>.fromJson({});
       expect(change.currentValue, isNull);
@@ -11,15 +11,16 @@ void main() => group('SimpleChange', () {
     });
 
     test('should return an initialized instance with a non-empty map', () {
-      final change = SimpleChange<String>.fromJson({
-        'currentValue': 'foo',
-        'previousValue': 'bar'
+      final change = SimpleChange<int>.fromJson({
+        'currentValue': 123,
+        'previousValue': 456
       });
 
-      expect(change.currentValue, equals('foo'));
-      expect(change.previousValue, equals('bar'));
+      expect(change.currentValue, equals(123));
+      expect(change.previousValue, equals(456));
     });
   });
+
   group('.toJson()', () {
     test('should return a map with default values for a newly created instance', () {
       final map = const SimpleChange<String>().toJson();
@@ -37,14 +38,14 @@ void main() => group('SimpleChange', () {
   });
 
   group('.toString()', () {
-    final data = const SimpleChange<String>(currentValue: 'bar', previousValue: 'baz').toString();
+    final change = const SimpleChange<int>(currentValue: 123, previousValue: 456).toString();
 
     test('should start with the class name', () {
-      expect(data, contains('SimpleChange {'));
+      expect(change, contains('SimpleChange {'));
     });
 
     test('should contain the instance properties', () {
-      expect(data, allOf(contains('"currentValue":"bar"'), contains('"previousValue":"baz"')));
+      expect(change, allOf(contains('"currentValue":123'), contains('"previousValue":456')));
     });
   });
 });
