@@ -47,3 +47,7 @@ void upgrade() {
   run('git', arguments: ['pull', '--rebase']);
   Pub.upgrade();
 }
+
+/// Watches for file changes.
+@Task('Watch for file changes')
+void watch() => Pub.run('build_runner', arguments: ['watch']);
