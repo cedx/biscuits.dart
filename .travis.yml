@@ -1,4 +1,4 @@
-addons: {chrome: stable}
+addons: {firefox: latest}
 dart: [stable]
 dist: trusty
 language: dart

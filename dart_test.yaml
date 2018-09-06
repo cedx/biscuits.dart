@@ -1,2 +1,2 @@
 test_on: browser
-platforms: [chrome]
+platforms: [firefox]
