@@ -29,7 +29,7 @@ void fix() => DartFmt.format(existingSourceDirs, lineLength: 200);
 void lint() => Analyzer.analyze(existingSourceDirs);
 
 @Task('Runs the test suites')
-void test() => Pub.run('build_runner', arguments: ['test']);
+void test() => Pub.run('build_runner', arguments: ['test', '--delete-conflicting-outputs']);
 
 @Task('Upgrades the project to the latest revision')
 void upgrade() {
@@ -40,4 +40,4 @@ void upgrade() {
 }
 
 @Task('Watches for file changes')
-void watch() => Pub.run('build_runner', arguments: ['watch']);
+void watch() => Pub.run('build_runner', arguments: ['watch', '--delete-conflicting-outputs']);
