@@ -2,16 +2,16 @@ part of '../biscuits.dart';
 
 /// Provides access to the HTTP cookies.
 /// See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
-class Cookies extends Object with MapMixin<String, String> {
+class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_mixin
+
+  /// Creates a new cookie service.
+  Cookies({CookieOptions defaults, dom.Document document}): defaults = defaults ?? CookieOptions(), _document = document ?? dom.document;
 
   /// The underlying HTML document.
   final dom.Document _document;
 
   /// The handler of "changes" events.
   final StreamController<Map<String, SimpleChange<String>>> _onChanges = StreamController<Map<String, SimpleChange<String>>>.broadcast();
-
-  /// Creates a new cookie service.
-  Cookies({CookieOptions defaults, dom.Document document}): defaults = defaults ?? CookieOptions(), _document = document ?? dom.document;
 
   /// The default cookie options.
   final CookieOptions defaults;
