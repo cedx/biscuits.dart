@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:grinder/grinder.dart';
 
 /// Starts the build system.
@@ -15,13 +14,10 @@ void clean() {
   FileSet.fromDir(getDir('var'), pattern: '*.{info,json}').files.forEach(delete);
 }
 
-@Task('Uploads the results of the code coverage')
-void coverage() => Pub.run('coveralls', arguments: ['var/lcov.info']);
-
 @Task('Builds the documentation')
 Future<void> doc() async {
-  await File('CHANGELOG.md').copy('doc/about/changelog.md');
-  await File('LICENSE.md').copy('doc/about/license.md');
+  await getFile('CHANGELOG.md').copy('doc/about/changelog.md');
+  await getFile('LICENSE.md').copy('doc/about/license.md');
   DartDoc.doc();
   run('mkdocs', arguments: ['build']);
 }
