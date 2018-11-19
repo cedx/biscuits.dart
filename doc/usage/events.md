@@ -16,7 +16,7 @@ void main() {
 }
 ```
 
-The changes are expressed as a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of [`SimpleChange<String>`](https://github.com/cedx/biscuits.dart/blob/master/lib/src/simple_change.dart) instances, where a `null` property indicates an absence of value:
+The changes are expressed as a [`Map`](https://api.dartlang.org/stable/dart-core/Map-class.html) of [`SimpleChange<String>`](https://git.belin.io/cedx/biscuits.dart/src/branch/master/lib/src/simple_change.dart) instances, where a `null` property indicates an absence of value:
 
 ```dart
 import 'package:biscuits/biscuits.dart';
