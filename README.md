@@ -10,7 +10,7 @@ Service for interacting with the [HTTP cookies](https://developer.mozilla.org/en
 ## Development
 - [Git repository](https://git.belin.io/cedx/biscuits.dart)
 - [Pub package](https://pub.dartlang.org/packages/biscuits)
-- [Submit an issue](https://git.belin.io/cedx/biscuits.dart/issues)
+- [Submit an issue](https://github.com/cedx/biscuits.dart/issues)
 
 ## License
 [Biscuits.dart](https://dev.belin.io/biscuits.dart) is distributed under the MIT License.
