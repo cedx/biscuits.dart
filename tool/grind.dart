@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:grinder/grinder.dart';
 
 /// Starts the build system.
@@ -13,6 +12,9 @@ void clean() {
   ['.dart_tool/build', 'doc/api', webDir.path].map(getDir).forEach(delete);
   FileSet.fromDir(getDir('var'), pattern: '!.*', recurse: true).files.forEach(delete);
 }
+
+@Task('Uploads the results of the code coverage')
+void coverage() => Pub.run('coveralls', arguments: ['var/lcov.info']);
 
 @Task('Builds the documentation')
 Future<void> doc() async {
