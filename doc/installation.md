@@ -5,16 +5,16 @@ Before installing **Biscuits.dart**, you need to make sure you have the [Dart SD
 and [Pub](https://www.dartlang.org/tools/pub), the Dart package manager, up and running.
 
 !!! warning
-    Biscuits.dart requires Dart >= **2.0.0**.
+    Biscuits.dart requires Dart >= **2.1.0**.
 
 You can verify if you're already good to go with the following commands:
 
 ```shell
 dart --version
-# Dart VM version: 2.0.0 (Unknown timestamp) on "linux_x64"
+# Dart VM version: 2.1.0 (Unknown timestamp) on "linux_x64"
 
 pub --version
-# Pub 2.0.0
+# Pub 2.1.0
 ```
 
 !!! info

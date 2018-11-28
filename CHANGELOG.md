@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [2.0.0](https://github.com/cedx/biscuits.dart/compare/v1.3.0...v2.0.0)
+- Breaking change: raised the [Dart SDK](https://www.dartlang.org/tools/sdk) constraint.
+- Updated the package dependencies.
+
 ## Version [1.3.0](https://github.com/cedx/biscuits.dart/compare/v1.2.0...v1.3.0)
 - Updated the package dependencies.
 
