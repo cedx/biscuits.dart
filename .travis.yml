@@ -3,7 +3,6 @@ dart: [stable]
 dist: trusty
 language: dart
 notifications: {email: false}
-sudo: required
 
 install: pub get
 before_script:
