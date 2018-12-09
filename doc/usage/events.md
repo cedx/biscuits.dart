@@ -11,7 +11,7 @@ import 'package:biscuits/biscuits.dart';
 
 void main() {
   Cookies().onChanges.listen((changes) {
-    for (final entry in changes.entries()) print('${entry.key}: ${entry.value}');
+    for (final entry in changes.entries) print('${entry.key}: ${entry.value}');
   });
 }
 ```
@@ -25,7 +25,7 @@ void main() {
   final cookies = Cookies();
 
   cookies.onChanges.listen((changes) {
-    for (final entry in changes.entries()) print(<String, String>{
+    for (final entry in changes.entries) print(<String, String>{
       'key': entry.key,
       'current': entry.value.currentValue,
       'previous': entry.value.previousValue
