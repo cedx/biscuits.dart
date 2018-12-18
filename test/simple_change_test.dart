@@ -12,8 +12,8 @@ void main() => group('SimpleChange', () {
 
     test('should return an initialized instance with a non-empty map', () {
       final change = SimpleChange<int>.fromJson({'currentValue': 123, 'previousValue': 456});
-      expect(change.currentValue, equals(123));
-      expect(change.previousValue, equals(456));
+      expect(change.currentValue, 123);
+      expect(change.previousValue, 456);
     });
   });
 
@@ -28,8 +28,8 @@ void main() => group('SimpleChange', () {
     test('should return a non-empty map for an initialized instance', () {
       final map = const SimpleChange<String>(currentValue: 'bar', previousValue: 'baz').toJson();
       expect(map, hasLength(2));
-      expect(map['currentValue'], equals('bar'));
-      expect(map['previousValue'], equals('baz'));
+      expect(map['currentValue'], 'bar');
+      expect(map['previousValue'], 'baz');
     });
   });
 

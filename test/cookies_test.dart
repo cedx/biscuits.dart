@@ -48,8 +48,8 @@ void main() => group('Cookies', () {
         expect(changes, hasLength(1));
 
         final record = changes.values.first;
-        expect(changes.keys.first, equals('onChanges'));
-        expect(record.currentValue, equals('foo'));
+        expect(changes.keys.first, 'onChanges');
+        expect(record.currentValue, 'foo');
         expect(record.previousValue, isNull);
       }));
 
@@ -64,9 +64,9 @@ void main() => group('Cookies', () {
         expect(changes, hasLength(1));
 
         final record = changes.values.first;
-        expect(changes.keys.first, equals('onChanges'));
-        expect(record.currentValue, equals('bar'));
-        expect(record.previousValue, equals('foo'));
+        expect(changes.keys.first, 'onChanges');
+        expect(record.currentValue, 'bar');
+        expect(record.previousValue, 'foo');
       }));
 
       cookies['onChanges'] = 'bar';
@@ -80,9 +80,9 @@ void main() => group('Cookies', () {
         expect(changes, hasLength(1));
 
         final record = changes.values.first;
-        expect(changes.keys.first, equals('onChanges'));
+        expect(changes.keys.first, 'onChanges');
         expect(record.currentValue, isNull);
-        expect(record.previousValue, equals('bar'));
+        expect(record.previousValue, 'bar');
       }));
 
       cookies.remove('onChanges');
@@ -99,12 +99,12 @@ void main() => group('Cookies', () {
         var records = changes.entries.where((entry) => entry.key == 'onChanges1').map((entry) => entry.value).toList();
         expect(records, hasLength(1));
         expect(records.first.currentValue, isNull);
-        expect(records.first.previousValue, equals('foo'));
+        expect(records.first.previousValue, 'foo');
 
         records = changes.entries.where((entry) => entry.key == 'onChanges2').map((entry) => entry.value).toList();
         expect(records, hasLength(1));
         expect(records.first.currentValue, isNull);
-        expect(records.first.previousValue, equals('bar'));
+        expect(records.first.previousValue, 'bar');
       }));
 
       cookies.clear();
@@ -145,16 +145,16 @@ void main() => group('Cookies', () {
       expect(cookies['foo'], isNull);
 
       dom.document.cookie = 'get1=foo';
-      expect(cookies['get1'], equals('foo'));
+      expect(cookies['get1'], 'foo');
 
       dom.document.cookie = 'get2=123';
-      expect(cookies['get2'], equals('123'));
+      expect(cookies['get2'], '123');
     });
 
     test('should return the given default value if the cookie is not found', () {
       final cookies = Cookies();
       expect(cookies.get('foo'), isNull);
-      expect(cookies.get('foo', 'bar'), equals('bar'));
+      expect(cookies.get('foo', 'bar'), 'bar');
     });
   });
 
@@ -164,15 +164,15 @@ void main() => group('Cookies', () {
       expect(cookies.getObject('foo'), isNull);
 
       dom.document.cookie = 'getObject1=123';
-      expect(cookies.getObject('getObject1'), equals(123));
+      expect(cookies.getObject('getObject1'), 123);
 
       dom.document.cookie = 'getObject2=%22bar%22';
-      expect(cookies.getObject('getObject2'), equals('bar'));
+      expect(cookies.getObject('getObject2'), 'bar');
 
       dom.document.cookie = 'getObject3=%7B%22key%22%3A%22value%22%7D';
       final object = cookies.getObject('getObject3');
       expect(object, allOf(isMap, hasLength(1)));
-      expect(object['key'], equals('value'));
+      expect(object['key'], 'value');
     });
 
     test('should return a `null` reference if the value can\'t be deserialized', () {
@@ -272,14 +272,14 @@ void main() => group('Cookies', () {
 
       final map = cookies.toJson();
       expect(map, hasLength(2));
-      expect(map['foo'], equals('bar'));
-      expect(map['baz'], equals('qux'));
+      expect(map['foo'], 'bar');
+      expect(map['baz'], 'qux');
     });
   });
 
   group('.toString()', () {
     test('should be the same value as the `document.cookie` property', () {
-      expect(Cookies().toString(), equals(dom.document.cookie));
+      expect(Cookies().toString(), dom.document.cookie);
     });
   });
 });
