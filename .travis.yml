@@ -1,5 +1,5 @@
 addons: {chrome: stable}
-dart: [stable]
+dart: [dev, stable]
 dist: xenial
 language: dart
 notifications: {email: false}
