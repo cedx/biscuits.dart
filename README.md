@@ -8,7 +8,7 @@ Service for interacting with the [HTTP cookies](https://developer.mozilla.org/en
 - [API reference](https://dev.belin.io/biscuits.dart/api)
 
 ## Development
-- [Git repository](https://git.belin.io/cedx/biscuits.dart)
+- [Git repository](https://github.com/cedx/biscuits.dart)
 - [Pub package](https://pub.dartlang.org/packages/biscuits)
 - [Submit an issue](https://github.com/cedx/biscuits.dart/issues)
 

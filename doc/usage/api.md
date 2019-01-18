@@ -1,4 +1,4 @@
-path: src/branch/master
+path: blob/master
 source: lib/src/cookies.dart
 
 # Programming interface
