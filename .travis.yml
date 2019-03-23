@@ -5,4 +5,4 @@ language: dart
 notifications: {email: false}
 
 install: pub get
-script: pub run grinder test
+script: pub run build_runner test
