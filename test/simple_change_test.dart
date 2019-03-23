@@ -1,3 +1,4 @@
+@TestOn('browser')
 import 'package:biscuits/biscuits.dart';
 import 'package:test/test.dart';
 
