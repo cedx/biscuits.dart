@@ -23,8 +23,4 @@ class SimpleChange<T> {
     'currentValue': currentValue,
     'previousValue': previousValue
   };
-
-  /// Returns a string representation of this object.
-  @override
-  String toString() => 'SimpleChange ${json.encode(this)}';
 }
