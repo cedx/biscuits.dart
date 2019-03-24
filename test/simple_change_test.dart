@@ -33,16 +33,4 @@ void main() => group('SimpleChange', () {
       expect(map['previousValue'], 'baz');
     });
   });
-
-  group('.toString()', () {
-    final data = const SimpleChange<int>(currentValue: 123, previousValue: 456).toString();
-
-    test('should start with the class name', () {
-      expect(data, contains('SimpleChange {'));
-    });
-
-    test('should contain the instance properties', () {
-      expect(data, allOf(contains('"currentValue":123'), contains('"previousValue":456')));
-    });
-  });
 });
