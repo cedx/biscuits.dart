@@ -1,4 +1,4 @@
-addons: {chrome: stable}
+addons: {firefox: latest}
 dart: [dev, stable]
 dist: xenial
 language: dart
