@@ -2,4 +2,6 @@ test_on: browser
 platforms: [firefox]
 override_platforms:
   firefox:
-    settings: {arguments: --headless}
+    settings:
+      arguments: --headless
+      executable: {windows: Mozilla\Firefox\firefox.exe}
