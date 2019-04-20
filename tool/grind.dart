@@ -13,9 +13,6 @@ void clean() {
   FileSet.fromDir(getDir('var'), pattern: '*.{info,json}', recurse: true).files.forEach(delete);
 }
 
-@Task('Uploads the results of the code coverage')
-void coverage() => Pub.run('coveralls', arguments: ['var/lcov.info']);
-
 @Task('Builds the documentation')
 Future<void> doc() async {
   for (final path in ['CHANGELOG.md', 'LICENSE.md']) await getFile(path).copy('doc/about/${path.toLowerCase()}');
