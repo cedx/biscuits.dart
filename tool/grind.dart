@@ -9,7 +9,7 @@ void build() => Pub.run('build_runner', arguments: ['build', '--delete-conflicti
 @Task('Deletes all generated files and reset any saved state')
 void clean() {
   defaultClean();
-  ['.dart_tool/build', 'doc/api', webDir.path].map(getDir).forEach(delete);
+  ['.dart_tool', 'doc/api', webDir.path].map(getDir).forEach(delete);
 }
 
 @Task('Builds the documentation')
