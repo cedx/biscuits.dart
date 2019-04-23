@@ -71,7 +71,7 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
 
   /// Gets the deserialized value associated to the specified [key].
   /// Returns the given default value if the cookie is not found.
-  dynamic getObject(String key, [Object defaultValue]) {
+  dynamic getObject(String key, [defaultValue]) {
     try {
       final value = this[key];
       return value is String ? json.decode(value) : defaultValue;
@@ -113,7 +113,7 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
   }
 
   /// Serializes and associates a given [value] to the specified [key].
-  void setObject(String key, Object value, [CookieOptions options]) => set(key, json.encode(value), options);
+  void setObject(String key, value, [CookieOptions options]) => set(key, json.encode(value), options);
 
   /// Converts this object to a [Map] in JSON format.
   Map<String, dynamic> toJson() => Map<String, dynamic>.from(this);

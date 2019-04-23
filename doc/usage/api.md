@@ -122,7 +122,7 @@ void main() {
 
 Returns a `null` reference or the given default value if the key is not found.
 
-## dynamic **getObject**(String key, [Object defaultValue])
+## dynamic **getObject**(String key, [dynamic defaultValue])
 Deserializes and returns the value associated to the specified key:
 
 ```dart
@@ -177,7 +177,7 @@ void main() {
 }
 ```
 
-## void **setObject**(String key, Object value, [CookieOptions options])
+## void **setObject**(String key, dynamic value, [CookieOptions options])
 Serializes and associates a given value to the specified key:
 
 ```dart
