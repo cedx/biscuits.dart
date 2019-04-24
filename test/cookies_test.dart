@@ -1,4 +1,3 @@
-@TestOn('browser')
 import 'dart:html' as dom;
 import 'package:biscuits/biscuits.dart';
 import 'package:test/test.dart';
