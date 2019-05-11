@@ -21,9 +21,8 @@ class CookieOptions {
   @JsonKey(ignore: true)
   Duration get maxAge {
     if (expires == null) return Duration.zero;
-    final expiration = expires.toUtc();
-    final now = DateTime.now().toUtc();
-    return expiration.isAfter(now) ? expiration.difference(now) : Duration.zero;
+    final now = DateTime.now();
+    return expires.isAfter(now) ? expires.toUtc().difference(now.toUtc()) : Duration.zero;
   }
 
   set maxAge(Duration value) => expires = value == null ? value : DateTime.now().add(value);
