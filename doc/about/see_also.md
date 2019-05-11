@@ -2,7 +2,7 @@
 
 ## Development
 - [API reference](https://dev.belin.io/biscuits.dart/api)
-- [Pub package](https://pub.dartlang.org/packages/biscuits)
+- [Pub package](https://pub.dev/packages/biscuits)
 - [Submit an issue](https://github.com/cedx/biscuits.dart/issues)
 
 ## Testing
