@@ -32,11 +32,11 @@ class CookieOptions {
   @override
   String toString() {
     final formatter = DateFormat('EEE, dd MMM yyyy HH:mm:ss', 'en_US');
-    final value = <String>[];
-    if (expires != null) value.add('expires=${formatter.format(expires.toUtc())} GMT');
-    if (domain.isNotEmpty) value.add('domain=$domain');
-    if (path.isNotEmpty) value.add('path=$path');
-    if (secure) value.add('secure');
-    return value.join('; ');
+    return [
+      if (expires != null) 'expires=${formatter.format(expires.toUtc())} GMT',
+      if (domain.isNotEmpty) 'domain=$domain',
+      if (path.isNotEmpty) 'path=$path',
+      if (secure) 'secure'
+    ].join('; ');
   }
 }
