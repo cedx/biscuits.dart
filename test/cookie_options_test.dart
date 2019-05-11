@@ -10,6 +10,44 @@ void main() => group('CookieOptions', () {
     secure: true
   );
 
+  group('.maxAge', () {
+    test('should return zero if the expiration time is not set', () {
+      expect(CookieOptions().maxAge, Duration.zero);
+    });
+
+    test('should return zero if the cookie has expired', () {
+      expect(CookieOptions(expires: DateTime(2000)).maxAge, Duration.zero);
+    });
+
+    test('should return the difference with now if the cookie has not expired', () {
+      const duration = Duration(seconds: 30);
+      expect(CookieOptions(expires: DateTime.now().add(duration)).maxAge, allOf(
+        greaterThan(const Duration(seconds: 29)),
+        lessThanOrEqualTo(duration)
+      ));
+    });
+
+    test('should set the expiration date accordingly', () {
+      final cookieOptions = CookieOptions()..maxAge = Duration.zero;
+      final now = DateTime.now();
+      expect(cookieOptions.expires.millisecondsSinceEpoch, allOf(
+        greaterThan(now.millisecondsSinceEpoch - 1000),
+        lessThanOrEqualTo(now.millisecondsSinceEpoch)
+      ));
+
+      const duration = Duration(seconds: 30);
+      final later = DateTime.now().add(duration);
+      cookieOptions.maxAge = duration;
+      expect(cookieOptions.expires.millisecondsSinceEpoch, allOf(
+        greaterThan(later.millisecondsSinceEpoch - 1000),
+        lessThanOrEqualTo(later.millisecondsSinceEpoch)
+      ));
+
+      cookieOptions.maxAge = null;
+      expect(cookieOptions.expires, isNull);
+    });
+  });
+
   group('.fromJson()', () {
     test('should return an instance with default values for an empty map', () {
       final cookieOptions = CookieOptions.fromJson({});
