@@ -17,6 +17,17 @@ class CookieOptions {
   /// The expiration date and time for the cookie.
   DateTime expires;
 
+  /// The maximum duration until the cookie expires.
+  @JsonKey(ignore: true)
+  Duration get maxAge {
+    if (expires == null) return Duration.zero;
+    final expiration = expires.toUtc();
+    final now = DateTime.now().toUtc();
+    return expiration.isAfter(now) ? expiration.difference(now) : Duration.zero;
+  }
+
+  set maxAge(Duration value) => expires = value == null ? value : DateTime.now().add(value);
+
   /// The path to which the cookie applies.
   @JsonKey(defaultValue: '')
   String path;

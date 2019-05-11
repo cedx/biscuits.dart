@@ -1,6 +1,7 @@
 # Changelog
 
 ## Version [2.3.0](https://github.com/cedx/biscuits.dart/compare/v2.2.0...v2.3.0)
+- Added the `CookieOptions.maxAge` property.
 - Raised the [Dart SDK](https://dart.dev/tools/sdk) constraint.
 - Using new language features: collection if.
 - Updated the package dependencies.
