@@ -1,2 +1,5 @@
 test_on: browser
-platforms: [chrome]
+platforms: [firefox]
+override_platforms:
+  firefox:
+    settings: {arguments: --headless}
