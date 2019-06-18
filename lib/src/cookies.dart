@@ -50,7 +50,7 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
   @override
   bool containsKey(Object key) {
     final token = Uri.encodeComponent(key).replaceAll(RegExp(r'[-.+*]'), r'\$&');
-    return RegExp('(?:^|;\\s*)$token\\s*\\=').hasMatch(_document.cookie);
+    return RegExp('(?:^|;\\s*)$token\\s*=').hasMatch(_document.cookie);
   }
 
   /// Gets the value associated to the specified [key].
@@ -60,7 +60,7 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
 
     try {
       final token = Uri.encodeComponent(key).replaceAll(RegExp('[-.+*]'), r'\$&');
-      final scanner = RegExp('(?:(?:^|.*;)\\s*$token\\s*\\=\\s*([^;]*).*\$)|^.*\$');
+      final scanner = RegExp('(?:(?:^|.*;)\\s*$token\\s*=\\s*([^;]*).*\$)|^.*\$');
       return Uri.decodeComponent(_document.cookie.replaceAllMapped(scanner, (match) => match[1]));
     }
 
