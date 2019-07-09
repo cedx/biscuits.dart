@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:grinder/grinder.dart';
 
 /// Starts the build system.
@@ -27,7 +28,10 @@ void fix() => DartFmt.format(existingSourceDirs);
 void lint() => Analyzer.analyze(existingSourceDirs);
 
 @Task('Runs the test suites')
-void test() => Pub.run('build_runner', arguments: ['test', '--delete-conflicting-outputs']);
+void test() {
+  final isCI = Platform.environment['CI'] == 'true';
+  Pub.run('build_runner', arguments: ['test', '--delete-conflicting-outputs', if (isCI) '--release']);
+}
 
 @Task('Upgrades the project to the latest revision')
 void upgrade() {
