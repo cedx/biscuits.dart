@@ -8,12 +8,13 @@ part of 'biscuits.dart';
 
 CookieOptions _$CookieOptionsFromJson(Map<String, dynamic> json) {
   return CookieOptions(
-      domain: json['domain'] as String ?? '',
-      expires: json['expires'] == null
-          ? null
-          : DateTime.parse(json['expires'] as String),
-      path: json['path'] as String ?? '',
-      secure: json['secure'] as bool ?? false);
+    domain: json['domain'] as String ?? '',
+    expires: json['expires'] == null
+        ? null
+        : DateTime.parse(json['expires'] as String),
+    path: json['path'] as String ?? '',
+    secure: json['secure'] as bool ?? false,
+  );
 }
 
 Map<String, dynamic> _$CookieOptionsToJson(CookieOptions instance) =>
@@ -21,5 +22,5 @@ Map<String, dynamic> _$CookieOptionsToJson(CookieOptions instance) =>
       'domain': instance.domain,
       'expires': instance.expires?.toIso8601String(),
       'path': instance.path,
-      'secure': instance.secure
+      'secure': instance.secure,
     };
