@@ -11,7 +11,7 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
   final dom.Document _document;
 
   /// The handler of "changes" events.
-  final StreamController<Map<String, SimpleChange<String>>> _onChanges = StreamController<Map<String, SimpleChange<String>>>.broadcast();
+  final StreamController<Map<String, SimpleChange>> _onChanges = StreamController<Map<String, SimpleChange>>.broadcast();
 
   /// The default cookie options.
   final CookieOptions defaults;
@@ -24,7 +24,7 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
   }
 
   /// The stream of "changes" events.
-  Stream<Map<String, SimpleChange<String>>> get onChanges => _onChanges.stream;
+  Stream<Map<String, SimpleChange>> get onChanges => _onChanges.stream;
 
   /// Gets the value associated to the specified [key].
   @override
@@ -37,9 +37,9 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
   /// Removes all cookies associated with the current document.
   @override
   void clear() {
-    final changes = <String, SimpleChange<String>>{};
+    final changes = <String, SimpleChange>{};
     for (final key in keys) {
-      changes[key] = SimpleChange<String>(previousValue: this[key]);
+      changes[key] = SimpleChange(previousValue: this[key]);
       _removeItem(key);
     }
 
@@ -89,7 +89,7 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
     final previousValue = this[key];
     _removeItem(key, options);
     _onChanges.add({
-      key: SimpleChange<String>(previousValue: previousValue)
+      key: SimpleChange(previousValue: previousValue)
     });
 
     return previousValue;
@@ -108,7 +108,7 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
     final previousValue = this[key];
     _document.cookie = cookieValue;
     _onChanges.add({
-      key: SimpleChange<String>(currentValue: value, previousValue: previousValue)
+      key: SimpleChange(currentValue: value, previousValue: previousValue)
     });
   }
 
