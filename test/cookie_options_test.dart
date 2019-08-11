@@ -11,8 +11,8 @@ void main() => group('CookieOptions', () {
   );
 
   group('.maxAge', () {
-    test('should return zero if the expiration time is not set', () {
-      expect(CookieOptions().maxAge, Duration.zero);
+    test('should return `null` if the expiration time is not set', () {
+      expect(CookieOptions().maxAge, isNull);
     });
 
     test('should return zero if the cookie has expired', () {

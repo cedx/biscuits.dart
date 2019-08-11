@@ -116,7 +116,7 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
   void setObject(String key, value, [CookieOptions options]) => set(key, json.encode(value), options);
 
   /// Converts this object to a [Map] in JSON format.
-  Map<String, dynamic> toJson() => Map<String, dynamic>.from(this);
+  Map<String, dynamic> toJson() => Map<String, String>.from(this);
 
   /// Returns a string representation of this object.
   @override
