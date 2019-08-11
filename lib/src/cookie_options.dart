@@ -14,18 +14,18 @@ class CookieOptions {
   @JsonKey(defaultValue: '')
   String domain;
 
-  /// The expiration date and time for the cookie.
+  /// The expiration date and time for the cookie. A `null` value indicates a session cookie.
   DateTime expires;
 
-  /// The maximum duration until the cookie expires.
+  /// The maximum duration until the cookie expires. A `null` value indicates a session cookie.
   @JsonKey(ignore: true)
   Duration get maxAge {
-    if (expires == null) return Duration.zero;
+    if (expires == null) return null;
     final now = DateTime.now();
     return expires.isAfter(now) ? expires.toUtc().difference(now.toUtc()) : Duration.zero;
   }
 
-  set maxAge(Duration value) => expires = value == null ? value : DateTime.now().add(value);
+  set maxAge(Duration value) => expires = value == null ? null : DateTime.now().add(value);
 
   /// The path to which the cookie applies.
   @JsonKey(defaultValue: '')
