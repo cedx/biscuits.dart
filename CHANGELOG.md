@@ -1,5 +1,11 @@
 # Changelog
 
+## Version [2.4.0](https://github.com/cedx/biscuits.dart/compare/v2.3.0...v2.4.0)
+- Downgraded the `SimpleChange` class to a non-generic one.
+- The `CookieOptions.maxAge` property now returns a `null` reference for session cookies.
+- Raised the [Dart SDK](https://dart.dev/tools/sdk) constraint.
+- Updated the package dependencies.
+
 ## Version [2.3.0](https://github.com/cedx/biscuits.dart/compare/v2.2.0...v2.3.0)
 - Added the `CookieOptions.maxAge` property.
 - Raised the [Dart SDK](https://dart.dev/tools/sdk) constraint.
