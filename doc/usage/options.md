@@ -5,11 +5,11 @@ source: lib/src/cookie_options.dart
 Several methods of the [`Cookies`](api.md) class accept an `options` parameter in order to customize the cookie attributes.
 These options are expressed using an instance of the [`CookieOptions`](https://github.com/cedx/biscuits.dart/blob/master/lib/src/cookie_options.dart) class, which has the following properties:
 
-- String **domain** = `""`: The domain for which the cookie is valid.
-- DateTime **expires** = `null`: The expiration date and time for the cookie.
-- Duration **maxAge** = `null`: The maximum duration until the cookie expires.
-- String **path** = `""`: The path to which the cookie applies.
-- bool **secure** = `false`: Value indicating whether to transmit the cookie over HTTPS only.
+- String **domain**: The domain for which the cookie is valid.
+- DateTime **expires**: The expiration date and time for the cookie.
+- Duration **maxAge**: The maximum duration until the cookie expires.
+- String **path**: The path to which the cookie applies.
+- bool **secure**: Value indicating whether to transmit the cookie over HTTPS only.
 
 For example:
 
