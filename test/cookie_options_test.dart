@@ -36,8 +36,8 @@ void main() => group('CookieOptions', () {
       ));
 
       const duration = Duration(seconds: 30);
-      final later = DateTime.now().add(duration);
       cookieOptions.maxAge = duration;
+      final later = DateTime.now().add(duration);
       expect(cookieOptions.expires.millisecondsSinceEpoch, allOf(
         greaterThan(later.millisecondsSinceEpoch - 1000),
         lessThanOrEqualTo(later.millisecondsSinceEpoch)
