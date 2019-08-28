@@ -4,6 +4,8 @@ import 'package:test/test.dart';
 
 /// Tests the features of the [Cookies] class.
 void main() => group('Cookies', () {
+
+  /// Returns a map of the native cookies.
   Map<String, String> getNativeCookies() {
     final nativeCookies = <String, String>{};
     if (dom.document.cookie.isNotEmpty) for (final value in dom.document.cookie.split(';')) {
