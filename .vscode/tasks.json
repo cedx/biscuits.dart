@@ -15,12 +15,6 @@
       "type": "shell"
     },
     {
-      "command": "grind coverage",
-      "label": "grinder : coverage",
-      "problemMatcher": [],
-      "type": "shell"
-    },
-    {
       "command": "grind doc",
       "label": "grinder : doc",
       "problemMatcher": [],
