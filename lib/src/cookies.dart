@@ -136,7 +136,7 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
   /// Removes the value associated to the specified [key].
   void _removeItem(String key, [CookieOptions options]) {
     if (!containsKey(key)) return;
-    final cookieOptions = _getOptions(options)..expires = DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true);
+    final cookieOptions = _getOptions(options)..expires = DateTime.fromMillisecondsSinceEpoch(0, isUtc: true);
     _document.cookie = '${Uri.encodeComponent(key)}=; $cookieOptions';
   }
 }
