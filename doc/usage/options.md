@@ -11,6 +11,9 @@ These options are expressed using an instance of the `CookieOptions` class, whic
 - String **path**: The path to which the cookie applies.
 - bool **secure**: Value indicating whether to transmit the cookie over HTTPS only.
 
+!!! info
+    The `maxAge` property has precedence over the `expires` one.
+
 For example:
 
 ```dart
@@ -24,7 +27,8 @@ void main() {
   ));
 }
 ```
-
+    
+## Configuring defaults
 It is possible to provide default values for the cookie options when instantiating the `Cookies` service:
 
 ```dart
