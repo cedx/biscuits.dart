@@ -6,8 +6,8 @@ Several methods of the [`Cookies`](api.md) class accept an `options` parameter i
 These options are expressed using an instance of the `CookieOptions` class, which has the following properties:
 
 - String **domain**: The domain for which the cookie is valid.
-- DateTime **expires**: The expiration date and time for the cookie.
-- Duration **maxAge**: The maximum duration until the cookie expires.
+- DateTime **expires**: The expiration date and time for the cookie. A `null` value indicates a session cookie.
+- Duration **maxAge**: The maximum duration until the cookie expires. A `null` value indicates a session cookie.
 - String **path**: The path to which the cookie applies.
 - bool **secure**: Value indicating whether to transmit the cookie over HTTPS only.
 
