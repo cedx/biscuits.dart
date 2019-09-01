@@ -5,13 +5,16 @@ part of '../biscuits.dart';
 class CookieOptions {
 
   /// Creates new cookie options.
-  CookieOptions({this.domain = '', DateTime expires, Duration maxAge, this.path = '', this.secure = false}) {
+  CookieOptions({this.domain = '', this.expires, Duration maxAge, this.path = '', this.secure = false}) {
     if (maxAge != null) this.maxAge = maxAge;
-    else this.expires = expires;
   }
 
   /// Creates new cookie options from the specified [map] in JSON format.
-  factory CookieOptions.fromJson(Map<String, dynamic> map) => _$CookieOptionsFromJson(map);
+  factory CookieOptions.fromJson(Map<String, dynamic> map) {
+    final options = _$CookieOptionsFromJson(map);
+    if (map['maxAge'] is int) options.maxAge = Duration(seconds: map['maxAge']);
+    return options;
+  }
 
   /// The domain for which the cookie is valid.
   @JsonKey(defaultValue: '')

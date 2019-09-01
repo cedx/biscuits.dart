@@ -53,16 +53,18 @@ void main() => group('CookieOptions', () {
       final cookieOptions = CookieOptions.fromJson({});
       expect(cookieOptions.domain, isEmpty);
       expect(cookieOptions.expires, isNull);
+      expect(cookieOptions.maxAge, isNull);
       expect(cookieOptions.path, isEmpty);
       expect(cookieOptions.secure, isFalse);
     });
 
     test('should return an initialized instance for a non-empty map', () {
       final cookieOptions = CookieOptions.fromJson(options.toJson());
-      expect(cookieOptions.domain, options.domain);
-      expect(cookieOptions.expires, options.expires);
-      expect(cookieOptions.path, options.path);
-      expect(cookieOptions.secure, options.secure);
+      expect(cookieOptions.domain, 'domain.com');
+      expect(cookieOptions.expires.toIso8601String(), '1970-01-01T00:00:00.000Z');
+      expect(cookieOptions.maxAge, Duration.zero);
+      expect(cookieOptions.path, '/path');
+      expect(cookieOptions.secure, isTrue);
     });
   });
 

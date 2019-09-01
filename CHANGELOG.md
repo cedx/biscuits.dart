@@ -1,7 +1,7 @@
 # Changelog
 
 ## Version [2.4.1](https://github.com/cedx/biscuits.dart/compare/v2.4.0...v2.4.1)
-- Fixed the [issue #1](https://github.com/cedx/biscuits.dart/issues/1): the `CookieOptions#maxAge` property is ignored by the constructor.
+- Fixed the [issue #1](https://github.com/cedx/biscuits.dart/issues/1): the `CookieOptions#maxAge` property cannot be set via the constructor.
 
 ## Version [2.4.0](https://github.com/cedx/biscuits.dart/compare/v2.3.0...v2.4.0)
 - Downgraded the `SimpleChange` class to a non-generic one.
