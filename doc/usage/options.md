@@ -42,7 +42,7 @@ void main() {
     secure: true
   ));
 
-  print(json.encode(cookies.defaults));
+  print(jsonEncode(cookies.defaults));
   // {"domain": "www.domain.com", "expires": null, "path": "/", "secure": true}
 }
 ```

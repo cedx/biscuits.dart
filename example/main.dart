@@ -1,8 +1,17 @@
+import 'dart:convert';
 import 'package:biscuits/biscuits.dart';
 
 /// Tests the cookie service.
 void main() {
-  final cookies = Cookies();
+  final cookies = Cookies(defaults: CookieOptions(
+    domain: 'domain.com',
+    path: '/path',
+    secure: true
+  ));
+
+  // The defaut options used when a cookie is created or removed.
+  print(jsonEncode(cookies.defaults));
+  // {"domain": "www.domain.com", "expires": null, "path": "/", "secure": true}
 
   // Write the cookies.
   print(cookies.containsKey('foo')); // false
