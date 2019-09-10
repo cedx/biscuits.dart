@@ -127,7 +127,7 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
     options ??= CookieOptions();
     return CookieOptions(
       domain: options.domain.isNotEmpty ? options.domain : defaults.domain,
-      expires: options.expires != null ? options.expires : defaults.expires,
+      expires: options.expires ?? defaults.expires,
       path: options.path.isNotEmpty ? options.path : defaults.path,
       secure: options.secure ? options.secure : defaults.secure
     );
