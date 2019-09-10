@@ -28,10 +28,7 @@ void fix() => DartFmt.format(existingSourceDirs);
 void lint() => Analyzer.analyze(existingSourceDirs);
 
 @Task('Runs the test suites')
-void test() {
-  final isCI = Platform.environment['CI'] == 'true';
-  Pub.run('build_runner', arguments: ['test', '--delete-conflicting-outputs', if (isCI) '--release']);
-}
+void test() => Pub.run('build_runner', arguments: ['test', '--delete-conflicting-outputs']);
 
 @Task('Upgrades the project to the latest revision')
 void upgrade() {
