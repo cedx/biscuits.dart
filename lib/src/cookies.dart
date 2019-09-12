@@ -98,8 +98,7 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
   /// Associates a given [value] to the specified [key].
   /// Throws an [ArgumentError] if the specified key is invalid.
   void set(String key, String value, [CookieOptions options]) {
-    if (key.isEmpty || RegExp(r'^(domain|expires|max-age|path|secure)$').hasMatch(key))
-      throw ArgumentError.value(key, 'key', 'Invalid cookie name.');
+    if (key.isEmpty) throw ArgumentError.value(key, 'key', 'Invalid cookie name.');
 
     final cookieOptions = _getOptions(options).toString();
     var cookieValue = '${Uri.encodeComponent(key)}=${Uri.encodeComponent(value)}';
