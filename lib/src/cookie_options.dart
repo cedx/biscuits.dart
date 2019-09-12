@@ -16,6 +16,25 @@ class CookieOptions {
     return options;
   }
 
+  /// Creates new options from the specified cookie string.
+  factory CookieOptions.fromString(String value) {
+    final attributes = ['domain', 'expires', 'max-age', 'path', 'secure'];
+    final map = <String, String>{};
+    for (final entry in value.split('; ').skip(1).map((part) => part.split('='))) {
+      final attribute = entry.first.toLowerCase();
+      if (attributes.contains(attribute)) map[attribute] = entry.last;
+    }
+
+    final maxAge = map.containsKey('max-age') ? int.tryParse(map['max-age'], radix: 10) : null;
+    return CookieOptions(
+      domain: map.containsKey('domain') ? map['domain'] : '',
+      expires: map.containsKey('expires') ? DateTime.tryParse(map['expires']) : null,
+      maxAge: maxAge != null ? Duration(seconds: maxAge) : null,
+      path: map.containsKey('path') ? map['path'] : '',
+      secure: map.containsKey('secure')
+    );
+  }
+
   /// The domain for which the cookie is valid.
   @JsonKey(defaultValue: '')
   String domain;
