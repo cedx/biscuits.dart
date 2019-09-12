@@ -222,13 +222,9 @@ void main() => group('Cookies', () {
       expect(dom.document.cookie, contains('set2=bar'));
     });
 
-    test('should throw an error if the specified key is a reserved word', () {
+    test('should throw an error if the specified key is empty', () {
       final cookies = Cookies();
-      expect(() => cookies['domain'] = 'foo', throwsArgumentError);
-      expect(() => cookies['expires'] = 'foo', throwsArgumentError);
-      expect(() => cookies['max-age'] = 'foo', throwsArgumentError);
-      expect(() => cookies['path'] = 'foo', throwsArgumentError);
-      expect(() => cookies['secure'] = 'foo', throwsArgumentError);
+      expect(() => cookies[''] = 'foo', throwsArgumentError);
     });
   });
 
@@ -251,13 +247,8 @@ void main() => group('Cookies', () {
       expect(dom.document.cookie, contains('setObject2=%22foo%22'));
     });
 
-    test('should throw an error if the specified key is a reserved word', () {
-      final cookies = Cookies();
-      expect(() => cookies.setObject('domain', 'foo'), throwsArgumentError);
-      expect(() => cookies.setObject('expires', 'foo'), throwsArgumentError);
-      expect(() => cookies.setObject('max-age', 'foo'), throwsArgumentError);
-      expect(() => cookies.setObject('path', 'foo'), throwsArgumentError);
-      expect(() => cookies.setObject('secure', 'foo'), throwsArgumentError);
+    test('should throw an error if the specified key is empty', () {
+      expect(() => Cookies().setObject('', 'foo'), throwsArgumentError);
     });
   });
 

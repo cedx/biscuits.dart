@@ -22,18 +22,25 @@ class CookieOptions {
     final map = <String, String>{};
     for (final entry in value.split('; ').skip(1).map((part) => part.split('='))) {
       final attribute = entry.first.toLowerCase();
-      if (attributes.contains(attribute)) map[attribute] = entry.last;
+      if (attributes.contains(attribute)) map[attribute] = entry.length > 1 ? entry.last : '';
     }
+
+    DateTime expires;
+    try { expires = map.containsKey('expires') ? gmtDateFormat.parseUtc(map['expires']) : null; }
+    on FormatException { expires = null; }
 
     final maxAge = map.containsKey('max-age') ? int.tryParse(map['max-age'], radix: 10) : null;
     return CookieOptions(
       domain: map.containsKey('domain') ? map['domain'] : '',
-      expires: map.containsKey('expires') ? DateTime.tryParse(map['expires']) : null,
+      expires: expires,
       maxAge: maxAge != null ? Duration(seconds: maxAge) : null,
       path: map.containsKey('path') ? map['path'] : '',
       secure: map.containsKey('secure')
     );
   }
+
+  /// The format of a GMT date.
+  static final DateFormat gmtDateFormat = DateFormat('EEE, dd MMM yyyy HH:mm:ss', 'en_US');
 
   /// The domain for which the cookie is valid.
   @JsonKey(defaultValue: '')
@@ -65,13 +72,10 @@ class CookieOptions {
 
   /// Returns a string representation of this object.
   @override
-  String toString() {
-    final formatter = DateFormat('EEE, dd MMM yyyy HH:mm:ss', 'en_US');
-    return [
-      if (expires != null) 'expires=${formatter.format(expires.toUtc())} GMT',
-      if (domain.isNotEmpty) 'domain=$domain',
-      if (path.isNotEmpty) 'path=$path',
-      if (secure) 'secure'
-    ].join('; ');
-  }
+  String toString() => [
+    if (expires != null) 'expires=${gmtDateFormat.format(expires.toUtc())} GMT',
+    if (domain.isNotEmpty) 'domain=$domain',
+    if (path.isNotEmpty) 'path=$path',
+    if (secure) 'secure'
+  ].join('; ');
 }

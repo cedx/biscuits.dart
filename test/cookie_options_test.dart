@@ -68,6 +68,26 @@ void main() => group('CookieOptions', () {
     });
   });
 
+  group('.fromString()', () {
+    test('should return an instance with default values for an empty string', () {
+      final cookieOptions = CookieOptions.fromString('');
+      expect(cookieOptions.domain, isEmpty);
+      expect(cookieOptions.expires, isNull);
+      expect(cookieOptions.maxAge, isNull);
+      expect(cookieOptions.path, isEmpty);
+      expect(cookieOptions.secure, isFalse);
+    });
+
+    test('should return an initialized instance for a cookie string', () {
+      final cookieOptions = CookieOptions.fromString('foo=bar; $options');
+      expect(cookieOptions.domain, 'domain.com');
+      expect(cookieOptions.expires.toIso8601String(), '1970-01-01T00:00:00.000Z');
+      expect(cookieOptions.maxAge, Duration.zero);
+      expect(cookieOptions.path, '/path');
+      expect(cookieOptions.secure, isTrue);
+    });
+  });
+
   group('.toJson()', () {
     test('should return a map with default values for a newly created instance', () {
       final map = CookieOptions().toJson();
