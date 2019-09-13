@@ -26,6 +26,10 @@ void fix() => DartFmt.format(existingSourceDirs);
 @Task('Performs the static analysis of source code')
 void lint() => Analyzer.analyze(existingSourceDirs);
 
+@Task('Publishes the package to the registry')
+@Depends(clean, fix)
+void publish() => run('pub', arguments: ['publish', '--force']);
+
 @Task('Runs the test suites')
 void test() => Pub.run('build_runner', arguments: ['test', '--delete-conflicting-outputs']);
 
