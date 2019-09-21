@@ -6,7 +6,7 @@
 - [Submit an issue](https://github.com/cedx/biscuits.dart/issues)
 
 ## Testing
-- [Continuous integration](https://travis-ci.com/cedx/biscuits.dart)
+- [Continuous integration](https://github.com/cedx/biscuits.dart/actions)
 
 ## Other implementations
 - JavaScript: [Cookies for JS](https://dev.belin.io/cookies.js)
