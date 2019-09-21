@@ -6,16 +6,18 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container:
-      image:  google/dart:latest
     steps:
+      - name: Set up Dart
+        run: |
+          wget https://storage.googleapis.com/dart-archive/channels/stable/release/latest/sdk/dartsdk-linux-x64-release.zip
+          unzip dartsdk-linux-x64-release.zip -d ${HOME}
       - name: Check environment
         run: |
-          dart --version
-          pub --version
+          ${HOME}/dart-sdk/bin/dart --version
+          ${HOME}/dart-sdk/bin/pub --version
       - name: Fetch sources
         uses: actions/checkout@v1
       - name: Install dependencies
-        run: pub get
+        run: ${HOME}/dart-sdk/bin/pub get
       - name: Run tests
-        run: pub run grinder test
+        run: ${HOME}/dart-sdk/bin/pub run grinder test
