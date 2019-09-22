@@ -88,7 +88,7 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
   String remove(Object key, [CookieOptions options]) {
     final previousValue = this[key];
     _removeItem(key, options);
-    _onChanges.add({
+    _onChanges.add(<String, SimpleChange>{
       key: SimpleChange(previousValue: previousValue)
     });
 
@@ -106,7 +106,7 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
 
     final previousValue = this[key];
     _document.cookie = cookieValue;
-    _onChanges.add({
+    _onChanges.add(<String, SimpleChange>{
       key: SimpleChange(currentValue: value, previousValue: previousValue)
     });
   }
