@@ -253,24 +253,6 @@ void main() => group('Cookies', () {
     });
   });
 
-  group('.toJson()', () {
-    test('should return an empty map if the current document has no associated cookie', () {
-      final cookies = Cookies()..clear();
-      expect(cookies.toJson(), isEmpty);
-    });
-
-    test('should return a non-empty map if the current document has associated cookies', () {
-      final cookies = Cookies()..clear();
-      cookies['foo'] = 'bar';
-      cookies['baz'] = 'qux';
-
-      final map = cookies.toJson();
-      expect(map, hasLength(2));
-      expect(map['foo'], 'bar');
-      expect(map['baz'], 'qux');
-    });
-  });
-
   group('.toString()', () {
     test('should be the same value as the `document.cookie` property', () {
       expect(Cookies().toString(), dom.document.cookie);
