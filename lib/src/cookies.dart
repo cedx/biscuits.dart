@@ -5,10 +5,12 @@ part of '../biscuits.dart';
 class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_mixin
 
   /// Creates a new cookie service.
-  Cookies({CookieOptions defaults, dom.Document document}): defaults = defaults ?? CookieOptions(), _document = document ?? dom.document;
+  Cookies({CookieOptions defaults, Document htmlDocument}):
+    defaults = defaults ?? CookieOptions(),
+    _document = htmlDocument ?? document;
 
   /// The underlying HTML document.
-  final dom.Document _document;
+  final Document _document;
 
   /// The handler of "changes" events.
   final StreamController<Map<String, SimpleChange>> _onChanges = StreamController<Map<String, SimpleChange>>.broadcast();
