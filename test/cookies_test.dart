@@ -45,7 +45,7 @@ void main() => group('Cookies', () {
       document.cookie = 'onChanges=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
 
       final cookies = Cookies();
-      cookies.onChanges.listen(expectAsync1((changes) {
+      final subscription = cookies.onChanges.listen(expectAsync1((changes) {
         expect(changes, hasLength(1));
 
         final record = changes.values.first;
@@ -55,13 +55,14 @@ void main() => group('Cookies', () {
       }));
 
       cookies['onChanges'] = 'foo';
+      subscription.cancel();
     });
 
     test('should trigger an event when a cookie is updated', () {
       document.cookie = 'onChanges=foo';
 
       final cookies = Cookies();
-      cookies.onChanges.listen(expectAsync1((changes) {
+      final subscription = cookies.onChanges.listen(expectAsync1((changes) {
         expect(changes, hasLength(1));
 
         final record = changes.values.first;
@@ -71,13 +72,14 @@ void main() => group('Cookies', () {
       }));
 
       cookies['onChanges'] = 'bar';
+      subscription.cancel();
     });
 
     test('should trigger an event when a cookie is removed', () {
       document.cookie = 'onChanges=bar';
 
       final cookies = Cookies();
-      cookies.onChanges.listen(expectAsync1((changes) {
+      final subscription = cookies.onChanges.listen(expectAsync1((changes) {
         expect(changes, hasLength(1));
 
         final record = changes.values.first;
@@ -87,6 +89,7 @@ void main() => group('Cookies', () {
       }));
 
       cookies.remove('onChanges');
+      subscription.cancel();
     });
 
     test('should trigger an event when all the cookies are removed', () {
@@ -94,7 +97,7 @@ void main() => group('Cookies', () {
       document.cookie = 'onChanges2=bar';
 
       final cookies = Cookies();
-      cookies.onChanges.listen(expectAsync1((changes) {
+      final subscription = cookies.onChanges.listen(expectAsync1((changes) {
         expect(changes.length, greaterThanOrEqualTo(2));
 
         var records = changes.entries.where((entry) => entry.key == 'onChanges1').map((entry) => entry.value).toList();
@@ -109,6 +112,7 @@ void main() => group('Cookies', () {
       }));
 
       cookies.clear();
+      subscription.cancel();
     });
   });
 
