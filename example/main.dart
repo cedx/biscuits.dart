@@ -17,7 +17,7 @@ void main() {
   // Write the cookies.
   print(cookies.containsKey('foo')); // false
   print(cookies.containsKey('baz')); // false
-  print(cookies.length); // 0
+  print(cookies.isEmpty); // true
 
   cookies['foo'] = 'bar';
   print(cookies.containsKey('foo')); // true
@@ -42,5 +42,5 @@ void main() {
 
   cookies.clear();
   print(cookies.containsKey('baz')); // false
-  print(cookies.length); // 0
+  print(cookies.isEmpty); // true
 }
