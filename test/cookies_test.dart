@@ -154,7 +154,7 @@ void main() => group('Cookies', () {
 
     test('should return the given default value if the cookie is not found', () {
       final cookies = Cookies();
-      expect(cookies.get('foo'), isNull);
+      expect(cookies['foo'], isNull);
       expect(cookies.get('foo', 'bar'), 'bar');
     });
   });

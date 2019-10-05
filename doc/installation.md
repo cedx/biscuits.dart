@@ -44,3 +44,5 @@ Now in your [Dart](https://dart.dev) code, you can use:
 ```dart
 import 'package:biscuits/biscuits.dart';
 ```
+
+See the [usage information](usage/api.md).

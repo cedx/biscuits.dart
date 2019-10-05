@@ -18,7 +18,7 @@ void main() {
 }
 ```
 
-The `Cookies` class implements the [`Map`](https://api.dartlang.org/dev/dart-core/Map-class.html) interface and has the following API:
+The `Cookies` class implements the [`Map`](https://api.dart.dev/stable/dart-core/Map-class.html) interface and has the following API:
 
 ## CookieOptions get **defaults**
 Returns the default [options](options.md) to pass when setting cookies:
@@ -97,10 +97,10 @@ import 'package:biscuits/biscuits.dart';
 
 void main() {
   final cookies = Cookies();
-  print(cookies.has('foo')); // false
+  print(cookies.containsKey('foo')); // false
 
   cookies['foo'] = 'bar';
-  print(cookies.has('foo')); // true
+  print(cookies.containsKey('foo')); // true
 }
 ```
 
@@ -139,7 +139,7 @@ void main() {
 ```
 
 !!! info
-    The value is deserialized using the [`JsonCodec.decode`](https://api.dartlang.org/stable/dart-convert/JsonCodec/decode.html) method.
+    The value is deserialized using the [`jsonDecode`](https://api.dart.dev/stable/dart-convert/jsonDecode.html) function.
 
 Returns a `null` reference or the given default value if the key is not found.
 
@@ -193,4 +193,4 @@ void main() {
 ```
 
 !!! info
-    The value is serialized using the [`JsonCodec.encode`](https://api.dartlang.org/stable/dart-convert/JsonCodec/encode.html) method.
+    The value is serialized using the [`jsonEncode`](https://api.dart.dev/stable/dart-convert/jsonEncode.html) function.
