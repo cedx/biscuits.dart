@@ -1,5 +1,7 @@
 # Changelog
 
+## Version [2.6.1](https://github.com/cedx/biscuits.dart/compare/v2.6.0...v2.6.1)
+
 ## Version [2.6.0](https://github.com/cedx/biscuits.dart/compare/v2.5.0...v2.6.0)
 - Added the `CookieOptions.fromString()` method.
 - Raised the [Dart SDK](https://dart.dev/tools/sdk) constraint.

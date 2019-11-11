@@ -1,5 +1,5 @@
 name: biscuits
-version: 2.6.0
+version: 2.6.1
 
 author: Cédric Belin <cedric@belin.io>
 description: Service for interacting with the HTTP cookies. A simple and event-based API for to manage cookies.
