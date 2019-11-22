@@ -16,7 +16,7 @@ jobs:
           ${HOME}/dart-sdk/bin/dart --version
           ${HOME}/dart-sdk/bin/pub --version
       - name: Fetch sources
-        uses: actions/checkout@v1
+        uses: actions/checkout@master
       - name: Install dependencies
         run: ${HOME}/dart-sdk/bin/pub get
       - name: Run tests
