@@ -1,4 +1,4 @@
-import 'dart:html';
+import 'dart:html' as dom;
 import 'package:biscuits/biscuits.dart';
 import 'package:test/test.dart';
 
@@ -7,7 +7,7 @@ void main() => group('Cookies', () {
   /// Returns a map of the native cookies.
   Map<String, String> getNativeCookies() {
     final nativeCookies = <String, String>{};
-    if (document.cookie.isNotEmpty) for (final value in document.cookie.split(';')) {
+    if (dom.document.cookie.isNotEmpty) for (final value in dom.document.cookie.split(';')) {
       final index = value.indexOf('=');
       nativeCookies[value.substring(0, index)] = value.substring(index + 1);
     }
@@ -21,8 +21,8 @@ void main() => group('Cookies', () {
     });
 
     test('should return the keys of the cookies associated with the current document', () {
-      document.cookie = 'key1=foo';
-      document.cookie = 'key2=bar';
+      dom.document.cookie = 'key1=foo';
+      dom.document.cookie = 'key2=bar';
       expect(Cookies().keys, orderedEquals(['key1', 'key2']));
     });
   });
@@ -34,15 +34,15 @@ void main() => group('Cookies', () {
 
     test('should return the number of cookies associated with the current document', () {
       final nativeCookies = getNativeCookies();
-      document.cookie = 'length1=foo';
-      document.cookie = 'length2=bar';
+      dom.document.cookie = 'length1=foo';
+      dom.document.cookie = 'length2=bar';
       expect(Cookies().length, inInclusiveRange(nativeCookies.length, nativeCookies.length + 2));
     });
   });
 
   group('.onChanges', () {
     test('should trigger an event when a cookie is added', () {
-      document.cookie = 'onChanges=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+      dom.document.cookie = 'onChanges=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
 
       final cookies = Cookies();
       cookies.onChanges.listen(expectAsync1((changes) {
@@ -58,7 +58,7 @@ void main() => group('Cookies', () {
     });
 
     test('should trigger an event when a cookie is updated', () {
-      document.cookie = 'onChanges=foo';
+      dom.document.cookie = 'onChanges=foo';
 
       final cookies = Cookies();
       cookies.onChanges.listen(expectAsync1((changes) {
@@ -74,7 +74,7 @@ void main() => group('Cookies', () {
     });
 
     test('should trigger an event when a cookie is removed', () {
-      document.cookie = 'onChanges=bar';
+      dom.document.cookie = 'onChanges=bar';
 
       final cookies = Cookies();
       cookies.onChanges.listen(expectAsync1((changes) {
@@ -90,8 +90,8 @@ void main() => group('Cookies', () {
     });
 
     test('should trigger an event when all the cookies are removed', () {
-      document.cookie = 'onChanges1=foo';
-      document.cookie = 'onChanges2=bar';
+      dom.document.cookie = 'onChanges1=foo';
+      dom.document.cookie = 'onChanges2=bar';
 
       final cookies = Cookies();
       cookies.onChanges.listen(expectAsync1((changes) {
@@ -114,12 +114,12 @@ void main() => group('Cookies', () {
 
   group('.clear()', () {
     test('should remove all the cookies associated with the current document', () {
-      document.cookie = 'clear1=foo';
-      document.cookie = 'clear2=bar';
+      dom.document.cookie = 'clear1=foo';
+      dom.document.cookie = 'clear2=bar';
 
       Cookies().clear();
-      expect(document.cookie, isNot(contains('clear1')));
-      expect(document.cookie, isNot(contains('clear2')));
+      expect(dom.document.cookie, isNot(contains('clear1')));
+      expect(dom.document.cookie, isNot(contains('clear2')));
     });
   });
 
@@ -129,8 +129,8 @@ void main() => group('Cookies', () {
     });
 
     test('should return `true` if the current document does not have an associated cookie with the specified key', () {
-      document.cookie = 'has1=foo';
-      document.cookie = 'has2=bar';
+      dom.document.cookie = 'has1=foo';
+      dom.document.cookie = 'has2=bar';
 
       final cookies = Cookies();
       expect(cookies.containsKey('has1'), isTrue);
@@ -145,10 +145,10 @@ void main() => group('Cookies', () {
       final cookies = Cookies();
       expect(cookies['foo'], isNull);
 
-      document.cookie = 'get1=foo';
+      dom.document.cookie = 'get1=foo';
       expect(cookies['get1'], 'foo');
 
-      document.cookie = 'get2=123';
+      dom.document.cookie = 'get2=123';
       expect(cookies['get2'], '123');
     });
 
@@ -164,20 +164,20 @@ void main() => group('Cookies', () {
       final cookies = Cookies();
       expect(cookies.getObject('foo'), isNull);
 
-      document.cookie = 'getObject1=123';
+      dom.document.cookie = 'getObject1=123';
       expect(cookies.getObject('getObject1'), 123);
 
-      document.cookie = 'getObject2=%22bar%22';
+      dom.document.cookie = 'getObject2=%22bar%22';
       expect(cookies.getObject('getObject2'), 'bar');
 
-      document.cookie = 'getObject3=%7B%22key%22%3A%22value%22%7D';
+      dom.document.cookie = 'getObject3=%7B%22key%22%3A%22value%22%7D';
       final object = cookies.getObject('getObject3');
       expect(object, allOf(isMap, hasLength(1)));
       expect(object['key'], 'value');
     });
 
     test('should return a `null` reference if the value can\'t be deserialized', () {
-      document.cookie = 'getObject4=bar';
+      dom.document.cookie = 'getObject4=bar';
       expect(Cookies().getObject('getObject4'), isNull);
     });
 
@@ -190,35 +190,35 @@ void main() => group('Cookies', () {
 
   group('.remove()', () {
     test('should properly remove the cookies associated with the current document', () {
-      document.cookie = 'remove1=foo';
-      document.cookie = 'remove2=bar';
+      dom.document.cookie = 'remove1=foo';
+      dom.document.cookie = 'remove2=bar';
 
       final cookies = Cookies()..remove('remove1');
-      expect(document.cookie, isNot(contains('remove1')));
-      expect(document.cookie, contains('remove2=bar'));
+      expect(dom.document.cookie, isNot(contains('remove1')));
+      expect(dom.document.cookie, contains('remove2=bar'));
 
       cookies.remove('remove2');
-      expect(document.cookie, isNot(contains('remove2')));
+      expect(dom.document.cookie, isNot(contains('remove2')));
     });
   });
 
   group('.set()', () {
     test('should properly set the cookies associated with the current document', () {
       final cookies = Cookies();
-      expect(document.cookie, isNot(contains('set1')));
-      expect(document.cookie, isNot(contains('set2')));
+      expect(dom.document.cookie, isNot(contains('set1')));
+      expect(dom.document.cookie, isNot(contains('set2')));
 
       cookies['set1'] = 'foo';
-      expect(document.cookie, contains('set1=foo'));
-      expect(document.cookie, isNot(contains('set2')));
+      expect(dom.document.cookie, contains('set1=foo'));
+      expect(dom.document.cookie, isNot(contains('set2')));
 
       cookies['set2'] = 'bar';
-      expect(document.cookie, contains('set1=foo'));
-      expect(document.cookie, contains('set2=bar'));
+      expect(dom.document.cookie, contains('set1=foo'));
+      expect(dom.document.cookie, contains('set2=bar'));
 
       cookies['set1'] = '123';
-      expect(document.cookie, contains('set1=123'));
-      expect(document.cookie, contains('set2=bar'));
+      expect(dom.document.cookie, contains('set1=123'));
+      expect(dom.document.cookie, contains('set2=bar'));
     });
 
     test('should throw an error if the specified key is empty', () {
@@ -230,20 +230,20 @@ void main() => group('Cookies', () {
   group('.setObject()', () {
     test('should properly serialize and set the cookies associated with the current document', () {
       final cookies = Cookies();
-      expect(document.cookie, isNot(contains('setObject1')));
-      expect(document.cookie, isNot(contains('setObject2')));
+      expect(dom.document.cookie, isNot(contains('setObject1')));
+      expect(dom.document.cookie, isNot(contains('setObject2')));
 
       cookies.setObject('setObject1', 123);
-      expect(document.cookie, contains('setObject1=123'));
-      expect(document.cookie, isNot(contains('setObject2')));
+      expect(dom.document.cookie, contains('setObject1=123'));
+      expect(dom.document.cookie, isNot(contains('setObject2')));
 
       cookies.setObject('setObject2', 'foo');
-      expect(document.cookie, contains('setObject1=123'));
-      expect(document.cookie, contains('setObject2=%22foo%22'));
+      expect(dom.document.cookie, contains('setObject1=123'));
+      expect(dom.document.cookie, contains('setObject2=%22foo%22'));
 
       cookies.setObject('setObject1', <String, String>{'key': 'value'});
-      expect(document.cookie, contains('setObject1=%7B%22key%22%3A%22value%22%7D'));
-      expect(document.cookie, contains('setObject2=%22foo%22'));
+      expect(dom.document.cookie, contains('setObject1=%7B%22key%22%3A%22value%22%7D'));
+      expect(dom.document.cookie, contains('setObject2=%22foo%22'));
     });
 
     test('should throw an error if the specified key is empty', () {
@@ -253,7 +253,7 @@ void main() => group('Cookies', () {
 
   group('.toString()', () {
     test('should be the same value as the `document.cookie` property', () {
-      expect(Cookies().toString(), document.cookie);
+      expect(Cookies().toString(), dom.document.cookie);
     });
   });
 });
