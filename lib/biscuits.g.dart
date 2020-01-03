@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'biscuits.dart';
+part of biscuits;
 
 // **************************************************************************
 // JsonSerializableGenerator
