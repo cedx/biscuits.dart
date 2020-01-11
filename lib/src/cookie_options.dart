@@ -26,7 +26,7 @@ class CookieOptions {
     }
 
     DateTime expires;
-    try { expires = map.containsKey('expires') ? gmtDateFormat.parseUtc(map['expires']) : null; }
+    try { expires = map.containsKey('expires') ? parseHttpDate(map['expires']) : null; }
     on FormatException { expires = null; }
 
     final maxAge = map.containsKey('max-age') ? int.tryParse(map['max-age'], radix: 10) : null;
@@ -38,9 +38,6 @@ class CookieOptions {
       secure: map.containsKey('secure')
     );
   }
-
-  /// The format of a GMT date.
-  static final DateFormat gmtDateFormat = DateFormat('EEE, dd MMM yyyy HH:mm:ss', 'en_US');
 
   /// The domain for which the cookie is valid.
   @JsonKey(defaultValue: '')
@@ -73,7 +70,7 @@ class CookieOptions {
   /// Returns a string representation of this object.
   @override
   String toString() => [
-    if (expires != null) 'expires=${gmtDateFormat.format(expires.toUtc())} GMT',
+    if (expires != null) 'expires=${formatHttpDate(expires)}',
     if (domain.isNotEmpty) 'domain=$domain',
     if (path.isNotEmpty) 'path=$path',
     if (secure) 'secure'

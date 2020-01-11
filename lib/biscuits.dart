@@ -5,7 +5,7 @@ import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
 import 'dart:html' as dom;
-import 'package:intl/intl.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'biscuits.g.dart';
