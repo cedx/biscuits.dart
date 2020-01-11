@@ -1,7 +1,7 @@
 # See also
 
 ## Development
-- [API reference](https://dev.belin.io/biscuits.dart/api)
+- [API reference](https://pub.dev/documentation/biscuits)
 - [Pub package](https://pub.dev/packages/biscuits)
 - [Submit an issue](https://github.com/cedx/biscuits.dart/issues)
 
