@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [2.7.0](https://github.com/cedx/biscuits.dart/compare/v2.6.1...v2.7.0)
+- Raised the [Dart SDK](https://dart.dev/tools/sdk) constraint.
+- Updated the package dependencies.
+
 ## Version [2.6.1](https://github.com/cedx/biscuits.dart/compare/v2.6.0...v2.6.1)
 - Fixed the [issue #2](https://github.com/cedx/biscuits.dart/issues/2): relaxed the version constraint of the `intl` dependency.
 
