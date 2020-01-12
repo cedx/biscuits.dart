@@ -11,7 +11,7 @@ dependencies:
   biscuits: *
 ```
 
-Install the latest version of **Biscuits.dart** with [Pub](https://dart.dev/tools/pub/cmd):
+Install the latest version of **Biscuits.dart** with [Pub](https://dart.dev/tools/pub):
 
 ```shell
 pub get
