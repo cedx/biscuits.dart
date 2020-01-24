@@ -8,16 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Dart
-        run: |
-          wget https://storage.googleapis.com/dart-archive/channels/stable/release/latest/sdk/dartsdk-linux-x64-release.zip
-          unzip dartsdk-linux-x64-release.zip -d ${HOME}
+        uses: cedx/setup-dart@master
       - name: Check environment
         run: |
-          ${HOME}/dart-sdk/bin/dart --version
-          ${HOME}/dart-sdk/bin/pub --version
+          dart --version
+          pub --version
       - name: Fetch sources
         uses: actions/checkout@master
       - name: Install dependencies
-        run: ${HOME}/dart-sdk/bin/pub get
+        run: pub get
       - name: Run tests
-        run: ${HOME}/dart-sdk/bin/pub run grinder test
+        run: pub run grinder test
