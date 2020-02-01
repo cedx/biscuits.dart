@@ -143,6 +143,51 @@ void main() {
 
 Returns a `null` reference or the given default value if the key is not found.
 
+## String **putIfAbsent**(String key, String Function() ifAbsent, [CookieOptions options])
+Looks up the value of the specified key, or add a new value if it isn't there.
+
+Returns the value associated to the key, if there is one. Otherwise calls `ifAbsent` to get a new value, associates the key to that value, and then returns the new value:
+
+```dart
+import 'package:biscuits/biscuits.dart';
+
+void main() {
+  final cookies = Cookies();
+  print(cookies.containsKey('foo')); // false
+
+  var value = cookies.putIfAbsent('foo', () => 'bar');
+  print(cookies.containsKey('foo')); // true
+  print(value); // "bar"
+
+  value = cookies.putIfAbsent('foo', () => 'qux');
+  print(value); // "bar"
+}
+```
+
+## dynamic **putObjectIfAbsent**(String key, dynamic Function() ifAbsent, [CookieOptions options])
+Looks up the value of the specified key, or add a new value if it isn't there.
+
+Returns the deserialized value associated to the key, if there is one. Otherwise calls `ifAbsent` to get a new value, serializes and associates the key to that value, and then returns the new value:
+
+```dart
+import 'package:biscuits/biscuits.dart';
+
+void main() {
+  final cookies = Cookies();
+  print(cookies.containsKey('foo')); // false
+
+  var value = cookies.putObjectIfAbsent('foo', () => 123);
+  print(cookies.containsKey('foo')); // true
+  print(value); // 123
+
+  value = cookies.putObjectIfAbsent('foo', () => 456);
+  print(value); // 123
+}
+```
+
+!!! info
+    The value is serialized using the [`jsonEncode`](https://api.dart.dev/stable/dart-convert/jsonEncode.html) function, and deserialized using the [`jsonDecode`](https://api.dart.dev/stable/dart-convert/jsonDecode.html) function.
+
 ## String **remove**(String key, [CookieOptions options])
 Removes the value associated to the specified key:
 
