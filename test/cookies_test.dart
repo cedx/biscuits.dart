@@ -188,6 +188,38 @@ void main() => group('Cookies', () {
     });
   });
 
+  group('.putIfAbsent()', () {
+    test('should add a new entry if it does not exist', () {
+      final cookies = Cookies();
+      expect(dom.document.cookie, isNot(contains('putIfAbsent1')));
+      expect(cookies.putIfAbsent('putIfAbsent1', () => 'foo'), 'foo');
+      expect(dom.document.cookie, contains('putIfAbsent1=foo'));
+    });
+
+    test('should not add a new entry if it already exists', () {
+      final cookies = Cookies();
+      dom.document.cookie = 'putIfAbsent2=foo';
+      expect(cookies.putIfAbsent('putIfAbsent2', () => 'bar'), 'foo');
+      expect(dom.document.cookie, contains('putIfAbsent2=foo'));
+    });
+  });
+
+  group('.putObjectIfAbsent()', () {
+    test('should add a new entry if it does not exist', () {
+      final cookies = Cookies();
+      expect(dom.document.cookie, isNot(contains('putObjectIfAbsent1')));
+      expect(cookies.putObjectIfAbsent('putObjectIfAbsent1', () => 123), 123);
+      expect(dom.document.cookie, contains('putObjectIfAbsent1=123'));
+    });
+
+    test('should not add a new entry if it already exists', () {
+      final cookies = Cookies();
+      dom.document.cookie = 'putObjectIfAbsent2=123';
+      expect(cookies.putObjectIfAbsent('putObjectIfAbsent2', () => 456), 123);
+      expect(dom.document.cookie, contains('putObjectIfAbsent2=123'));
+    });
+  });
+
   group('.remove()', () {
     test('should properly remove the cookies associated with the current document', () {
       dom.document.cookie = 'remove1=foo';
