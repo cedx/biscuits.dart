@@ -1,5 +1,10 @@
 # Changelog
 
+## Version [2.8.0](https://github.com/cedx/biscuits.dart/compare/v2.7.0...v2.8.0)
+- Added the `putIfAbsent()` and `putObjectIfAbsent()` methods to the `Cookies` class.
+- Raised the [Dart SDK](https://dart.dev/tools/sdk) constraint.
+- Updated the package dependencies.
+
 ## Version [2.7.0](https://github.com/cedx/biscuits.dart/compare/v2.6.1...v2.7.0)
 - Raised the [Dart SDK](https://dart.dev/tools/sdk) constraint.
 - Updated the package dependencies.
