@@ -84,7 +84,7 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
     }
   }
 
-  /// Looks up the value of the specified [key], or add a new value if it isn't there.
+  /// Looks up the cookie with the specified [key], or add a new cookie if it isn't there.
   ///
   /// Returns the value associated to [key], if there is one. Otherwise calls [ifAbsent] to get a new value,
   /// associates [key] to that value, and then returns the new value.
@@ -94,7 +94,7 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
     return this[key];
   }
 
-  /// Looks up the value of the specified [key], or add a new value if it isn't there.
+  /// Looks up the cookie with the specified [key], or add a new cookie if it isn't there.
   ///
   /// Returns the deserialized value associated to [key], if there is one. Otherwise calls [ifAbsent] to get a new value,
   /// serializes and associates [key] to that value, and then returns the new value.

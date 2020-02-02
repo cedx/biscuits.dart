@@ -144,9 +144,10 @@ void main() {
 Returns a `null` reference or the given default value if the key is not found.
 
 ## String **putIfAbsent**(String key, String Function() ifAbsent, [CookieOptions options])
-Looks up the value of the specified key, or add a new value if it isn't there.
+Looks up the cookie with the specified key, or add a new cookie if it isn't there.
 
-Returns the value associated to the key, if there is one. Otherwise calls `ifAbsent` to get a new value, associates the key to that value, and then returns the new value:
+Returns the value associated to the key, if there is one. Otherwise calls `ifAbsent` to get a new value,
+associates the key to that value, and then returns the new value:
 
 ```dart
 import 'package:biscuits/biscuits.dart';
@@ -165,9 +166,10 @@ void main() {
 ```
 
 ## dynamic **putObjectIfAbsent**(String key, dynamic Function() ifAbsent, [CookieOptions options])
-Looks up the value of the specified key, or add a new value if it isn't there.
+Looks up the cookie with the specified key, or add a new cookie if it isn't there.
 
-Returns the deserialized value associated to the key, if there is one. Otherwise calls `ifAbsent` to get a new value, serializes and associates the key to that value, and then returns the new value:
+Returns the deserialized value associated to the key, if there is one. Otherwise calls `ifAbsent` to get a new value,
+serializes and associates the key to that value, and then returns the new value:
 
 ```dart
 import 'package:biscuits/biscuits.dart';
@@ -186,7 +188,8 @@ void main() {
 ```
 
 !!! info
-    The value is serialized using the [`jsonEncode`](https://api.dart.dev/stable/dart-convert/jsonEncode.html) function, and deserialized using the [`jsonDecode`](https://api.dart.dev/stable/dart-convert/jsonDecode.html) function.
+    The value is serialized using the [`jsonEncode`](https://api.dart.dev/stable/dart-convert/jsonEncode.html) function,
+    and deserialized using the [`jsonDecode`](https://api.dart.dev/stable/dart-convert/jsonDecode.html) function.
 
 ## String **remove**(String key, [CookieOptions options])
 Removes the value associated to the specified key:
