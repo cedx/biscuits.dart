@@ -51,6 +51,7 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
   /// Gets a value indicating whether the current document has a cookie with the specified [key].
   @override
   bool containsKey(Object key) {
+    assert(key is String && key.isNotEmpty);
     final token = Uri.encodeComponent(key).replaceAll(RegExp(r'[-.+*]'), r'\$&');
     return RegExp('(?:^|;\\s*)$token\\s*=').hasMatch(_document.cookie);
   }
@@ -107,6 +108,8 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
   /// Returns the value associated with [key] before it was removed.
   @override
   String remove(Object key, [CookieOptions options]) {
+    assert(key is String && key.isNotEmpty);
+
     final previousValue = this[key];
     _removeItem(key, options);
     _onChanges.add(<String, SimpleChange>{
@@ -117,9 +120,8 @@ class Cookies extends Object with MapMixin<String, String> { // ignore: prefer_m
   }
 
   /// Associates a given [value] to the specified [key].
-  /// Throws an [ArgumentError] if the specified key is invalid.
   void set(String key, String value, [CookieOptions options]) {
-    if (key.isEmpty) throw ArgumentError.value(key, 'key', 'Invalid cookie name.');
+    assert(key.isNotEmpty);
 
     final cookieOptions = _getOptions(options).toString();
     var cookieValue = '${Uri.encodeComponent(key)}=${Uri.encodeComponent(value)}';
