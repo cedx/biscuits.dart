@@ -252,11 +252,6 @@ void main() => group('Cookies', () {
       expect(dom.document.cookie, contains('set1=123'));
       expect(dom.document.cookie, contains('set2=bar'));
     });
-
-    test('should throw an error if the specified key is empty', () {
-      final cookies = Cookies();
-      expect(() => cookies[''] = 'foo', throwsArgumentError);
-    });
   });
 
   group('.setObject()', () {
@@ -276,10 +271,6 @@ void main() => group('Cookies', () {
       cookies.setObject('setObject1', <String, String>{'key': 'value'});
       expect(dom.document.cookie, contains('setObject1=%7B%22key%22%3A%22value%22%7D'));
       expect(dom.document.cookie, contains('setObject2=%22foo%22'));
-    });
-
-    test('should throw an error if the specified key is empty', () {
-      expect(() => Cookies().setObject('', 'foo'), throwsArgumentError);
     });
   });
 
