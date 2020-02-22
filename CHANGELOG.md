@@ -16,7 +16,7 @@
 - Removed the restriction on allowed cookie names.
 
 ## Version [2.5.0](https://github.com/cedx/biscuits.dart/compare/v2.4.0...v2.5.0)
-- Fixed the [issue #1](https://github.com/cedx/biscuits.dart/issues/1): the `CookieOptions#maxAge` property cannot be set via the constructor.
+- Fixed the [issue #1](https://github.com/cedx/biscuits.dart/issues/1): the `CookieOptions.maxAge` property cannot be set via the constructor.
 - Updated the package dependencies.
 
 ## Version [2.4.0](https://github.com/cedx/biscuits.dart/compare/v2.3.0...v2.4.0)
