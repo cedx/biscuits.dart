@@ -1,5 +1,7 @@
-path: blob/master
+---
+path: src/branch/master
 source: lib/src/simple_change.dart
+---
 
 # Events
 The [`Cookies`](api.md) class triggers a `changes` event every time one or several values are changed (added, removed or updated) through this class.

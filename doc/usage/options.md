@@ -1,5 +1,7 @@
-path: blob/master
+---
+path: src/branch/master
 source: lib/src/cookie_options.dart
+---
 
 # Cookie options
 Several methods of the [`Cookies`](api.md) class accept an `options` parameter in order to customize the cookie attributes.

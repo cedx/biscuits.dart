@@ -1,5 +1,7 @@
-path: blob/master
+---
+path: src/branch/master
 source: lib/src/cookies.dart
+---
 
 # Programming interface
 This package provides a service dedicated to the cookie management: the `Cookies` class.
