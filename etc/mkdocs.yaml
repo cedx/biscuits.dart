@@ -1,5 +1,5 @@
 site_name: Biscuits.dart
-site_description: Service for interacting with the HTTP cookies, in Dart.
+site_description: Service for interacting with the HTTP cookies, in Dart. A simple and event-based API for handling cookies.
 site_author: Cédric Belin - cedric@belin.io
 site_url: https://docs.belin.io/biscuits.dart
 

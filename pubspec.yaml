@@ -1,7 +1,7 @@
 name: biscuits
 version: 2.8.0
 
-description: Service for interacting with the HTTP cookies. A simple and event-based API for to manage cookies.
+description: Service for interacting with the HTTP cookies. A simple and event-based API for handling cookies.
 homepage: https://docs.belin.io/biscuits.dart
 issue_tracker: https://git.belin.io/cedx/biscuits.dart/issues
 repository: https://git.belin.io/cedx/biscuits.dart
