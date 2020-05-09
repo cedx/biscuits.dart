@@ -21,9 +21,11 @@ jobs:
       - name: Run tests
         uses: GabrielBB/xvfb-action@v1.0
         with:
-          run: pub run grinder test
+          run: pub run build_runner test --delete-conflicting-outputs -- --coverage=var
       - name: Collect code coverage
         env:
           COVERALLS_REPO_TOKEN: ${{secrets.GITHUB_TOKEN}}
         if: success()
-        run: pub run grinder coverage
+        run: |
+          pub run coverage:format_coverage --in=var/test --lcov --out=var/lcov.info --packages=.dart_tool/package_config.json --report-on=lib
+          pub run coveralls var/lcov.info
