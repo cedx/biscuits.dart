@@ -5,7 +5,7 @@ Service for interacting with the [HTTP cookies](https://developer.mozilla.org/en
 
 ## Documentation
 - [User guide](https://docs.belin.io/biscuits.dart)
-- [API reference](https://pub.dev/documentation/biscuits)
+- [API reference](https://api.belin.io/biscuits.dart)
 
 ## Development
 - [Git repository](https://git.belin.io/cedx/biscuits.dart)
