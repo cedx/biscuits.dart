@@ -7,6 +7,3 @@
 
 ## Testing
 - [Continuous integration](https://github.com/cedx/biscuits.dart/actions)
-
-## Other implementations
-- JavaScript: [Cookies for JS](https://docs.belin.io/cookies.js)
