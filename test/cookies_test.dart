@@ -176,7 +176,7 @@ void main() => group("Cookies", () {
 			expect(object["key"], "value");
 		});
 
-		test("should return a `null` reference if the value can\"t be deserialized", () {
+		test("should return a `null` reference if the value can't be deserialized", () {
 			dom.document.cookie = "getObject4=bar";
 			expect(Cookies().getObject("getObject4"), isNull);
 		});
