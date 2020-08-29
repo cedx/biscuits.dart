@@ -19,5 +19,5 @@ dev_dependencies:
   build_web_compilers: ^2.11.0
   coverage: ^0.14.0
   coveralls: ^5.10.0
-  json_serializable: ^3.4.0
+  json_serializable: ^3.4.1
   test: ^1.15.3
