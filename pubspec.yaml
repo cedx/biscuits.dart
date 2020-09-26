@@ -11,13 +11,13 @@ environment:
 
 dependencies:
   http_parser: ^3.1.4
-  json_annotation: ^3.0.1
+  json_annotation: ^3.1.0
 
 dev_dependencies:
   build_runner: ^1.10.1
-  build_test: ^1.2.1
+  build_test: ^1.2.2
   build_web_compilers: ^2.11.0
   coverage: ^0.14.1
   coveralls: ^5.10.0
-  json_serializable: ^3.4.1
+  json_serializable: ^3.5.0
   test: ^1.15.4
