@@ -1,12 +1,7 @@
----
-path: src/branch/main
-source: lib/src/cookies.dart
----
-
 # Programming interface
 This package provides a service dedicated to the cookie management: the `Cookies` class.
 
-``` dart
+```dart
 import "package:biscuits/biscuits.dart";
 
 void main() {
@@ -20,12 +15,12 @@ void main() {
 }
 ```
 
-The `Cookies` class implements the [`Map`](https://api.dart.dev/stable/dart-core/Map-class.html) interface and has the following API:
+The `Cookies` class implements the `Map` interface and has the following API:
 
 ## CookieOptions get **defaults**
-Returns the default [options](options.md) to pass when setting cookies:
+Returns the default [options](usage/options.md) to pass when setting cookies:
 
-``` dart
+```dart
 import "dart:convert";
 import "package:biscuits/biscuits.dart";
 
@@ -47,7 +42,7 @@ void main() {
 ## Iterable&lt;String&gt; get **keys**
 Returns the keys of the cookies associated with the current document:
 
-``` dart
+```dart
 import "package:biscuits/biscuits.dart";
 
 void main() {
@@ -62,7 +57,7 @@ void main() {
 ## int get **length**
 Returns the number of cookies associated with the current document:
 
-``` dart
+```dart
 import "package:biscuits/biscuits.dart";
 
 void main() {
@@ -77,7 +72,7 @@ void main() {
 ## void **clear**()
 Removes all cookies associated with the current document:
 
-``` dart
+```dart
 import "package:biscuits/biscuits.dart";
 
 void main() {
@@ -94,7 +89,7 @@ void main() {
 ## bool **containsKey**(String key)
 Returns a boolean value indicating whether the current document has a cookie with the specified key:
 
-``` dart
+```dart
 import "package:biscuits/biscuits.dart";
 
 void main() {
@@ -109,7 +104,7 @@ void main() {
 ## String **get**(String key, [String defaultValue])
 Returns the value associated to the specified key:
 
-``` dart
+```dart
 import "package:biscuits/biscuits.dart";
 
 void main() {
@@ -127,7 +122,7 @@ Returns a `null` reference or the given default value if the key is not found.
 ## dynamic **getObject**(String key, [dynamic defaultValue])
 Deserializes and returns the value associated to the specified key:
 
-``` dart
+```dart
 import "package:biscuits/biscuits.dart";
 
 void main() {
@@ -140,8 +135,7 @@ void main() {
 }
 ```
 
-!!! info
-	The value is deserialized using the [`jsonDecode`](https://api.dart.dev/stable/dart-convert/jsonDecode.html) function.
+?> The value is deserialized using the `jsonDecode()` function.
 
 Returns a `null` reference or the given default value if the key is not found.
 
@@ -151,7 +145,7 @@ Looks up the cookie with the specified key, or add a new cookie if it isn't ther
 Returns the value associated to the key, if there is one. Otherwise calls `ifAbsent` to get a new value,
 associates the key to that value, and then returns the new value:
 
-``` dart
+```dart
 import "package:biscuits/biscuits.dart";
 
 void main() {
@@ -173,7 +167,7 @@ Looks up the cookie with the specified key, or add a new cookie if it isn't ther
 Returns the deserialized value associated to the key, if there is one. Otherwise calls `ifAbsent` to get a new value,
 serializes and associates the key to that value, and then returns the new value:
 
-``` dart
+```dart
 import "package:biscuits/biscuits.dart";
 
 void main() {
@@ -189,14 +183,12 @@ void main() {
 }
 ```
 
-!!! info
-	The value is serialized using the [`jsonEncode`](https://api.dart.dev/stable/dart-convert/jsonEncode.html) function,
-	and deserialized using the [`jsonDecode`](https://api.dart.dev/stable/dart-convert/jsonDecode.html) function.
+?> The value is serialized using the `jsonEncode()` function, and deserialized using the `jsonDecode()` function.
 
 ## String **remove**(String key, [CookieOptions options])
 Removes the value associated to the specified key:
 
-``` dart
+```dart
 import "package:biscuits/biscuits.dart";
 
 void main() {
@@ -215,7 +207,7 @@ Returns the value associated with the key before it was removed.
 ## void **set**(String key, String value, [CookieOptions options])
 Associates a given value to the specified key:
 
-``` dart
+```dart
 import "package:biscuits/biscuits.dart";
 
 void main() {
@@ -230,7 +222,7 @@ void main() {
 ## void **setObject**(String key, dynamic value, [CookieOptions options])
 Serializes and associates a given value to the specified key:
 
-``` dart
+```dart
 import "package:biscuits/biscuits.dart";
 
 void main() {
@@ -242,5 +234,4 @@ void main() {
 }
 ```
 
-!!! info
-	The value is serialized using the [`jsonEncode`](https://api.dart.dev/stable/dart-convert/jsonEncode.html) function.
+?> The value is serialized using the `jsonEncode()` function.

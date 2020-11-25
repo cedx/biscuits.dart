@@ -1,14 +1,9 @@
----
-path: src/branch/main
-source: lib/src/simple_change.dart
----
-
 # Events
-The [`Cookies`](api.md) class triggers a `changes` event every time one or several values are changed (added, removed or updated) through this class.
+The `Cookies` class triggers a `changes` event every time one or several values are changed (added, removed or updated) through this class.
 
-These events are exposed as [`Stream`](https://api.dart.dev/stable/dart-async/Stream-class.html), you can listen to them using the `onChanges` property:
+These events are exposed as `Stream`, you can listen to them using the `onChanges` property:
 
-``` dart
+```dart
 import "package:biscuits/biscuits.dart";
 
 void main() {
@@ -18,9 +13,9 @@ void main() {
 }
 ```
 
-The changes are expressed as a [`Map`](https://api.dart.dev/stable/dart-core/Map-class.html) of `SimpleChange` instances, where a `null` property indicates an absence of value:
+The changes are expressed as a `Map` of `SimpleChange` instances, where a `null` property indicates an absence of value:
 
-``` dart
+```dart
 import "package:biscuits/biscuits.dart";
 
 void main() {
@@ -46,7 +41,7 @@ void main() {
 
 The values contained in the `currentValue` and `previousValue` properties of the `SimpleChange` instances are the raw cookie values. If you use the `Cookies.setObject()` method to set a cookie, you will get the serialized string value, not the original value passed to the method:
 
-``` dart
+```dart
 cookies.setObject("foo", <String, String>{"bar": "baz"});
 // Prints: {"key": "foo", "current": "{\"bar\": \"baz\"}", "previous": null}
 ```

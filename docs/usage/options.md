@@ -1,10 +1,5 @@
----
-path: src/branch/main
-source: lib/src/cookie_options.dart
----
-
 # Cookie options
-Several methods of the [`Cookies`](api.md) class accept an `options` parameter in order to customize the cookie attributes.
+Several methods of the `Cookies` class accept an `options` parameter in order to customize the cookie attributes.
 These options are expressed using an instance of the `CookieOptions` class, which has the following properties:
 
 - String **domain**: The domain for which the cookie is valid.
@@ -13,12 +8,11 @@ These options are expressed using an instance of the `CookieOptions` class, whic
 - String **path**: The path to which the cookie applies.
 - bool **secure**: Value indicating whether to transmit the cookie over HTTPS only.
 
-!!! info
-	The `maxAge` property has precedence over the `expires` one.
+?> The `maxAge` property has precedence over the `expires` one.
 
 For example:
 
-``` dart
+```dart
 import "package:biscuits/biscuits.dart";
 
 void main() {
@@ -33,7 +27,7 @@ void main() {
 ## Configuring defaults
 It is possible to provide default values for the cookie options when instantiating the `Cookies` service:
 
-``` dart
+```dart
 import "dart:convert";
 import "package:biscuits/biscuits.dart";
 
@@ -49,5 +43,4 @@ void main() {
 }
 ```
 
-!!! tip
-	The [`Cookies.defaults`](api.md) property let you override the default cookie options at runtime.
+?> The `Cookies.defaults` property let you override the default cookie options at runtime.
