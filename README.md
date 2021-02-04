@@ -4,13 +4,13 @@
 > Service for interacting with the [HTTP cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) in [Dart](https://dart.dev).
 
 ## Documentation
-- [User guide](https://docs.belin.io/biscuits.dart)
-- [API reference](https://api.belin.io/biscuits.dart)
+- [User guide](https://cedx.github.io/biscuits.dart)
+- [API reference](https://pub.dev/documentation/biscuits)
 
 ## Development
-- [Git repository](https://git.belin.io/cedx/biscuits.dart)
+- [Git repository](https://github.com/cedx/biscuits.dart)
 - [Pub package](https://pub.dev/packages/biscuits)
-- [Submit an issue](https://git.belin.io/cedx/biscuits.dart/issues)
+- [Submit an issue](https://github.com/cedx/biscuits.dart/issues)
 
 ## License
-[Biscuits.dart](https://docs.belin.io/biscuits.dart) is distributed under the MIT License.
+[Biscuits.dart](https://cedx.github.io/biscuits.dart) is distributed under the MIT License.
