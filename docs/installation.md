@@ -1,9 +1,7 @@
 # Installation
 
 ## Requirements
-Before installing **Biscuits.dart**, you need to make sure you have the [Dart SDK](https://dart.dev/tools/sdk)
-and [Pub](https://dart.dev/tools/pub), the Dart package manager, up and running.
-
+Before installing **Biscuits.dart**, you need to make sure you have the [Dart SDK](https://dart.dev/tools/sdk) up and running.
 You can verify if you're already good to go with the following command:
 
 ```shell
@@ -36,5 +34,3 @@ Now in your [Dart](https://dart.dev) code, you can use:
 ```dart
 import "package:biscuits/biscuits.dart";
 ```
-
-See the [usage information](usage/api.md).
